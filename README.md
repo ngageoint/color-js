@@ -70,7 +70,7 @@ float lightness = color.getLightness();
 
 ### Build ###
 
-![Build & Test](https://github.com/ngageoint/color-js/actions/workflows/run-tests.yml/badge.svg)
+![Build & Test](https://github.com/ngageoint/color-js/actions/workflows/build-test.yml/badge.svg)
 
 Build this repository using Node.js:
 
