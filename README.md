@@ -1,4 +1,4 @@
-# Color Java
+# Color Javascript
 
 #### Color Lib ####
 
