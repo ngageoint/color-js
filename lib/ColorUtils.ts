@@ -498,8 +498,8 @@ export class ColorUtils {
      */
     public static getRed(color: number): number;
 
-    public static getRed(colorOrHex: any): any {
-        let red: any;
+    public static getRed(colorOrHex: (number | string)): (number | string) {
+        let red: (number | string);
         if (typeof colorOrHex === 'number') {
             red = (colorOrHex >> 16) & 0xff;
         } else {
@@ -527,8 +527,8 @@ export class ColorUtils {
      */
     public static getGreen(color: number): number;
 
-    public static getGreen(colorOrHex: any): any {
-        let green: any;
+    public static getGreen(colorOrHex: (number | string)): (number | string) {
+        let green: (number | string);
         if (typeof colorOrHex === 'number') {
             green = (colorOrHex >> 8) & 0xff;
         } else {
@@ -556,8 +556,8 @@ export class ColorUtils {
      */
     public static getBlue(color: number): number;
 
-    public static getBlue(colorOrHex: any): any {
-        let blue: any;
+    public static getBlue(colorOrHex: (number | string)): (number | string) {
+        let blue: (number | string);
         if (typeof colorOrHex === 'number') {
             blue = colorOrHex & 0xff;
         } else {
@@ -585,8 +585,8 @@ export class ColorUtils {
      */
     public static getAlpha(color: number): number;
 
-    public static getAlpha(colorOrHex: any): any {
-        let alpha: any;
+    public static getAlpha(colorOrHex: (number | string)): (number | string) {
+        let alpha: (number | string);
         if (typeof colorOrHex === 'number') {
             alpha = (colorOrHex >> 24) & 0xff;
         } else {
