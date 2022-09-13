@@ -19,22 +19,6 @@ export class ColorUtils {
         "^\\p{XDigit}{1,2}$");
 
     /**
-     * Convert the hex color values to a hex color
-     *
-     * @param red
-     *            red hex color in format RR or R
-     * @param green
-     *            green hex color in format GG or G
-     * @param blue
-     *            blue hex color in format BB or B
-     *
-     * @return hex color in format #RRGGBB
-     */
-    public static toColor(red: string, green: string, blue: string): string {
-        return ColorUtils.toColorWithAlpha(red, green, blue, null);
-    }
-
-    /**
      * Convert the hex color values to a hex color, shorthanded when possible
      *
      * @param red
@@ -53,29 +37,6 @@ export class ColorUtils {
 
     /**
      * Convert the hex color values to a hex color including an opaque alpha
-     * value of FF
-     *
-     * @param red
-     *            red hex color in format RR or R
-     * @param green
-     *            green hex color in format GG or G
-     * @param blue
-     *            blue hex color in format BB or B
-     *
-     * @return hex color in format #AARRGGBB
-     */
-    public static toColorWithAlpha(red: string, green: string,
-        blue: string) {
-        let defaultAlpha = "FF";
-        if (red != null && red.length > 0
-            && red.charAt(0).toLowerCase() == red.charAt(0)) {
-            defaultAlpha = defaultAlpha.toLowerCase();
-        }
-        return ColorUtils.toColorWithAlpha(red, green, blue, defaultAlpha);
-    }
-
-    /**
-     * Convert the hex color values to a hex color including an opaque alpha
      * value of FF or F, shorthanded when possible
      *
      * @param red
@@ -90,35 +51,6 @@ export class ColorUtils {
     public static toColorShorthandWithAlpha(red: string, green: string,
         blue: string): string {
         return ColorUtils.shorthandHex(ColorUtils.toColorWithAlpha(red, green, blue));
-    }
-
-    /**
-     * Convert the hex color values to a hex color
-     *
-     * @param red
-     *            red hex color in format RR or R
-     * @param green
-     *            green hex color in format GG or G
-     * @param blue
-     *            blue hex color in format BB or B
-     * @param alpha
-     *            alpha hex color in format AA or A, null to not include alpha
-     *
-     * @return hex color in format #AARRGGBB or #RRGGBB
-     */
-    public static toColorWithAlpha(red: string, green: string, blue: string,
-        alpha: string): string {
-        ColorUtils.validateHexSingle(red);
-        ColorUtils.validateHexSingle(green);
-        ColorUtils.validateHexSingle(blue);
-        let color = "#";
-        if (alpha != null) {
-            color += ColorUtils.expandShorthandHexSingle(alpha);
-        }
-        color += ColorUtils.expandShorthandHexSingle(red);
-        color += ColorUtils.expandShorthandHexSingle(green);
-        color += ColorUtils.expandShorthandHexSingle(blue);
-        return color;
     }
 
     /**
@@ -141,6 +73,22 @@ export class ColorUtils {
     }
 
     /**
+    * Convert the hex color values to a hex color
+    *
+    * @param red
+    *            red hex color in format RR or R
+    * @param green
+    *            green hex color in format GG or G
+    * @param blue
+    *            blue hex color in format BB or B
+    *
+    * @return hex color in format #RRGGBB
+    */
+    public static toColor(red: string, green: string, blue: string): string {
+        return ColorUtils.toColorWithAlpha(red, green, blue, null);
+    }
+
+    /**
      * Convert the RBG values to a color integer
      *
      * @param red
@@ -154,6 +102,58 @@ export class ColorUtils {
      */
     public static toColor(red: number, green: number, blue: number): number {
         return ColorUtils.toColorWithAlpha(red, green, blue, -1);
+    }
+
+    /**
+    * Convert the hex color values to a hex color including an opaque alpha
+    * value of FF
+    *
+    * @param red
+    *            red hex color in format RR or R
+    * @param green
+    *            green hex color in format GG or G
+    * @param blue
+    *            blue hex color in format BB or B
+    *
+    * @return hex color in format #AARRGGBB
+    */
+    public static toColorWithAlpha(red: string, green: string,
+        blue: string) {
+        let defaultAlpha = "FF";
+        if (red != null && red.length > 0
+            && red.charAt(0).toLowerCase() == red.charAt(0)) {
+            defaultAlpha = defaultAlpha.toLowerCase();
+        }
+        return ColorUtils.toColorWithAlpha(red, green, blue, defaultAlpha);
+    }
+
+    /**
+    * Convert the hex color values to a hex color
+    *
+    * @param red
+    *            red hex color in format RR or R
+    * @param green
+    *            green hex color in format GG or G
+    * @param blue
+    *            blue hex color in format BB or B
+    * @param alpha
+    *            alpha hex color in format AA or A, null to not include alpha
+    *
+    * @return hex color in format #AARRGGBB or #RRGGBB
+    */
+    public static toColorWithAlpha(red: string, green: string, blue: string,
+        alpha: string): string {
+        ColorUtils.validateHexSingle(red);
+        ColorUtils.validateHexSingle(green);
+        ColorUtils.validateHexSingle(blue);
+        let color = "#";
+        if (alpha != null) {
+            color += ColorUtils.expandShorthandHexSingle(alpha);
+        }
+        color += ColorUtils.expandShorthandHexSingle(red);
+        color += ColorUtils.expandShorthandHexSingle(green);
+        color += ColorUtils.expandShorthandHexSingle(blue);
+        return color;
     }
 
     /**
@@ -226,58 +226,6 @@ export class ColorUtils {
      */
     public static toHex(color: number): string {
         return ColorUtils.toHex(ColorUtils.toRGB(color));
-    }
-
-    /**
-     * Convert the hex single color to a RBG integer
-     *
-     * @param color
-     *            hex single color in format FF or F
-     *
-     * @return integer color inclusively between 0 and 255
-     */
-    public static toRGB(color: string): number {
-        ColorUtils.validateHexSingle(color);
-        if (color.length == 1) {
-            color += color;
-        }
-        return parseInt(color, 16);
-    }
-
-    /**
-     * Convert the arithmetic RGB float to a RBG integer
-     *
-     * @param color
-     *            float color inclusively between 0.0 and 1.0
-     *
-     * @return integer color inclusively between 0 and 255
-     */
-    public static toRGB(color: number): number {
-        ColorUtils.validateArithmeticRGB(color);
-        return Math.round(255 * color);
-    }
-
-    /**
-     * Convert the hex single color to an arithmetic RBG float
-     *
-     * @param color
-     *            hex single color in format FF or F
-     * @return float color inclusively between 0.0 and 1.0
-     */
-    public static toArithmeticRGB(color: string): number {
-        return ColorUtils.toArithmeticRGB(ColorUtils.toRGB(color));
-    }
-
-    /**
-     * Convert the RGB integer to an arithmetic RBG float
-     *
-     * @param color
-     *            integer color inclusively between 0 and 255
-     * @return float color inclusively between 0.0 and 1.0
-     */
-    public static toArithmeticRGB(color: number): number {
-        ColorUtils.validateRGB(color);
-        return color / 255.0;
     }
 
     /**
@@ -355,6 +303,29 @@ export class ColorUtils {
     }
 
     /**
+    * Convert the hex single color to an arithmetic RBG float
+    *
+    * @param color
+    *            hex single color in format FF or F
+    * @return float color inclusively between 0.0 and 1.0
+    */
+    public static toArithmeticRGB(color: string): number {
+        return ColorUtils.toArithmeticRGB(ColorUtils.toRGB(color));
+    }
+
+    /**
+     * Convert the RGB integer to an arithmetic RBG float
+     *
+     * @param color
+     *            integer color inclusively between 0 and 255
+     * @return float color inclusively between 0.0 and 1.0
+     */
+    public static toArithmeticRGB(color: number): number {
+        ColorUtils.validateRGB(color);
+        return color / 255.0;
+    }
+
+    /**
      * Convert HSL (hue, saturation, and lightness) values to RGB arithmetic
      * values
      *
@@ -388,6 +359,36 @@ export class ColorUtils {
 
         return [red, green, blue];
     }
+
+    /**
+   * Convert the hex single color to a RBG integer
+   *
+   * @param color
+   *            hex single color in format FF or F
+   *
+   * @return integer color inclusively between 0 and 255
+   */
+    public static toRGB(color: string): number {
+        ColorUtils.validateHexSingle(color);
+        if (color.length == 1) {
+            color += color;
+        }
+        return parseInt(color, 16);
+    }
+
+    /**
+     * Convert the arithmetic RGB float to a RBG integer
+     *
+     * @param color
+     *            float color inclusively between 0.0 and 1.0
+     *
+     * @return integer color inclusively between 0 and 255
+     */
+    public static toRGB(color: number): number {
+        ColorUtils.validateArithmeticRGB(color);
+        return Math.round(255 * color);
+    }
+
 
     /**
      * Convert HSL (hue, saturation, and lightness) values to RGB integer values
@@ -441,50 +442,6 @@ export class ColorUtils {
     }
 
     /**
-     * Get the hex red color from the hex string
-     *
-     * @param hex
-     *            hex color
-     * @return hex red color in format RR
-     */
-    public static getRed(hex: string): string {
-        return ColorUtils.getHexSingle(hex, 0);
-    }
-
-    /**
-     * Get the hex green color from the hex string
-     *
-     * @param hex
-     *            hex color
-     * @return hex green color in format GG
-     */
-    public static getGreen(hex: string): string {
-        return ColorUtils.getHexSingle(hex, 1);
-    }
-
-    /**
-     * Get the hex blue color from the hex string
-     *
-     * @param hex
-     *            hex color
-     * @return hex blue color in format BB
-     */
-    public static getBlue(hex: string): string {
-        return ColorUtils.getHexSingle(hex, 2);
-    }
-
-    /**
-     * Get the hex alpha color from the hex string if it exists
-     *
-     * @param hex
-     *            hex color
-     * @return hex alpha color in format AA or null
-     */
-    public static getAlpha(hex: string): string {
-        return ColorUtils.getHexSingle(hex, -1);
-    }
-
-    /**
      * Get the hex single color
      *
      * @param hex
@@ -524,15 +481,42 @@ export class ColorUtils {
     }
 
     /**
+    * Get the hex red color from the hex string
+    *
+    * @param hex
+    *            hex color
+    * @return hex red color in format RR
+    */
+    public static getRed(hex: string): string;
+
+    /**
      * Get the red color from color integer
      *
      * @param color
      *            color integer
      * @return red color
      */
-    public static getRed(color: number): number {
-        return (color >> 16) & 0xff;
+    public static getRed(color: number): number;
+
+    public static getRed(colorOrHex: any): any {
+        let red: any;
+        if (typeof colorOrHex === 'number') {
+            red = (colorOrHex >> 16) & 0xff;
+        } else {
+            red = ColorUtils.getHexSingle(colorOrHex, 0);
+        }
+
+        return red;
     }
+
+    /**
+    * Get the hex green color from the hex string
+    *
+    * @param hex
+    *            hex color
+    * @return hex green color in format GG
+    */
+    public static getGreen(hex: string): string;
 
     /**
      * Get the green color from color integer
@@ -541,9 +525,27 @@ export class ColorUtils {
      *            color integer
      * @return green color
      */
-    public static getGreen(color: number): number {
-        return (color >> 8) & 0xff;
+    public static getGreen(color: number): number;
+
+    public static getGreen(colorOrHex: any): any {
+        let green: any;
+        if (typeof colorOrHex === 'number') {
+            green = (colorOrHex >> 8) & 0xff;
+        } else {
+            green = ColorUtils.getHexSingle(colorOrHex, 1);
+        }
+
+        return green;
     }
+
+    /**
+    * Get the hex blue color from the hex string
+    *
+    * @param hex
+    *            hex color
+    * @return hex blue color in format BB
+    */
+    public static getBlue(hex: string): string;
 
     /**
      * Get the blue color from color integer
@@ -552,9 +554,27 @@ export class ColorUtils {
      *            color integer
      * @return blue color
      */
-    public static getBlue(color: number): number {
-        return color & 0xff;
+    public static getBlue(color: number): number;
+
+    public static getBlue(colorOrHex: any): any {
+        let blue: any;
+        if (typeof colorOrHex === 'number') {
+            blue = colorOrHex & 0xff;
+        } else {
+            blue = ColorUtils.getHexSingle(colorOrHex, 2);
+        }
+
+        return blue;
     }
+
+    /**
+    * Get the hex alpha color from the hex string if it exists
+    *
+    * @param hex
+    *            hex color
+    * @return hex alpha color in format AA or null
+    */
+    public static getAlpha(hex: string): string;
 
     /**
      * Get the alpha color from color integer
@@ -563,8 +583,17 @@ export class ColorUtils {
      *            color integer
      * @return alpha color
      */
-    public static getAlpha(color: number): number {
-        return (color >> 24) & 0xff;
+    public static getAlpha(color: number): number;
+
+    public static getAlpha(colorOrHex: any): any {
+        let alpha: any;
+        if (typeof colorOrHex === 'number') {
+            alpha = (colorOrHex >> 24) & 0xff;
+        } else {
+            alpha = ColorUtils.getHexSingle(colorOrHex, -1);
+        }
+
+        return alpha;
     }
 
     /**
