@@ -32,7 +32,7 @@
         "mocha": "^10.0.0",
         "nyc": "^15.1.0",
         "ts-node": "^10.9.1",
-        "typescript": "^4.6.3"
+        "typescript": "^4.8.3"
     },
     "scripts": {
         "clean": "rm -rf ./.test_run; rm -rf ./.nyc_output; rm -rf ./docs/coverage; npm run clean-dist; npm run clean-test; rm -rf api-docs",
