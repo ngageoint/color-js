@@ -1,1 +1,1 @@
-export * from './lib/internal'
+export * from './lib/ColorConstants'
