@@ -227,7 +227,7 @@ export class ColorUtils {
     */
     public static toHex(color: number): string {
         let hex: string;
-        if (!Number.isInteger(color)) {
+        if (!Number.isInteger(color) || color == 1 || color == 0) {
             color = ColorUtils.toRGB(color);
         }
         ColorUtils.validateRGB(color);
@@ -251,9 +251,13 @@ export class ColorUtils {
     * @return HSL array where: 0 = hue, 1 = saturation, 2 = lightness
     */
     public static toHSL(red: number, green: number, blue: number): number[] {
-        if (Number.isInteger(red)) {
+        if (Number.isInteger(red) && red != 0 && red != 1) {
             red = ColorUtils.toArithmeticRGB(red);
+        }
+        if (Number.isInteger(green) && green != 0 && green != 1) {
             green = ColorUtils.toArithmeticRGB(green);
+        }
+        if (Number.isInteger(blue) && blue != 0 && blue != 1) {
             blue = ColorUtils.toArithmeticRGB(blue)
         }
 
@@ -318,17 +322,17 @@ export class ColorUtils {
      */
     public static toArithmeticRGB(color: number): number;
 
-    public static toArithmeticRGB(color: number | string): number {
-        let colorAsNumber: number;
-
-        if (typeof color === 'number') {
-            ColorUtils.validateRGB(color);
-            colorAsNumber = color / 255.0;
-        } else {
-            colorAsNumber = ColorUtils.toArithmeticRGB(ColorUtils.toRGB(color));
+    public static toArithmeticRGB(color: any): number {
+        if (typeof color === 'string') {
+            color = ColorUtils.toRGB(color)
         }
 
-        return colorAsNumber;
+        if (Number.isInteger(color) && color != 0 && color != 1) {
+            ColorUtils.validateRGB(color);
+            color = color / 255.0;
+        }
+
+        return color;
     }
 
     /**

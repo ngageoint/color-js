@@ -557,7 +557,7 @@ describe('Color Tests', function () {
         const hsl = color.getHSL();
         expect(hsl[0]).to.be.approximately(hue, 0.5);
         expect(hsl[1]).to.be.approximately(saturation, 0.01);
-        expect(hsl[2]).to.be.approximately(lightness, 0.0);
+        expect(hsl[2]).to.be.approximately(lightness, 0.01);
         expect(color.getHue()).to.be.approximately(hue, 0.5);
         expect(color.getSaturation()).to.be.approximately(saturation, 0.01);
         expect(color.getLightness()).to.be.approximately(lightness, 0.01);

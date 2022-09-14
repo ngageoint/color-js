@@ -268,17 +268,15 @@ export class Color {
      * @param red
      *            red float color inclusively between 0.0 and 1.0
      */
-    public setRed(red: number | string): void {
+    public setRed(red: any): void {
+        if (Number.isInteger(red) && red != 0 && red != 1) {
+            red = ColorUtils.toHex(red);
+        }
         if (typeof red === 'string') {
             red = ColorUtils.toArithmeticRGB(red);
-        } else {
-            if (!Number.isInteger) {
-                ColorUtils.validateArithmeticRGB(red);
-                this.red = red;
-            } else {
-                this.setRed(ColorUtils.toHex(red));
-            }
-        }
+        } 
+        ColorUtils.validateArithmeticRGB(red);
+        this.red = red;
     }
 
     /**
@@ -303,18 +301,15 @@ export class Color {
      * @param green
      *            green float color inclusively between 0.0 and 1.0
      */
-    public setGreen(green: number | string): void {
+    public setGreen(green: any): void {
+        if (Number.isInteger(green) && green != 0 && green != 1) {
+            green = ColorUtils.toHex(green);
+        }
         if (typeof green === 'string') {
             green = ColorUtils.toArithmeticRGB(green);
-        }
-        else {
-            if (!Number.isInteger(green)) {
-                ColorUtils.validateArithmeticRGB(green);
-                this.green = green;
-            } else {
-                this.setGreen(ColorUtils.toHex(green));
-            }
-        }
+        } 
+        ColorUtils.validateArithmeticRGB(green);
+        this.green = green;
     }
 
     /**
@@ -339,17 +334,15 @@ export class Color {
      * @param blue
      *            blue float color inclusively between 0.0 and 1.0
      */
-    public setBlue(blue: number | string): void {
+    public setBlue(blue: any): void {
+        if (Number.isInteger(blue) && blue !=0 && blue != 1) {
+            blue = ColorUtils.toHex(blue)
+        }
         if (typeof blue === 'string') {
             blue = ColorUtils.toArithmeticRGB(blue);
-        } else {
-            if (!Number.isInteger(blue)) {
-                ColorUtils.validateArithmeticRGB(blue);
-                this.blue = blue;
-            } else {
-                this.setBlue(ColorUtils.toHex(blue));
-            }
-        }
+        } 
+        ColorUtils.validateArithmeticRGB(blue);
+        this.blue = blue;
     }
 
     /**
@@ -385,16 +378,12 @@ export class Color {
      * @param alpha
      *            alpha float color inclusively between 0.0 and 1.0
      */
-    public setAlpha(alpha: number | string): void {
-        if (typeof alpha === 'number') {
-            if (!Number.isInteger(alpha)) {
-                this.setOpacity(alpha);
-            } else {
-                this.setOpacity(ColorUtils.toArithmeticRGB(alpha));
-            }
-        } else {
-            this.setOpacity(ColorUtils.toArithmeticRGB(alpha));
+    public setAlpha(alpha: any): void {
+        if (typeof alpha === 'string' || (Number.isInteger(alpha) && alpha != 0 && alpha != 1)) {
+            alpha = ColorUtils.toArithmeticRGB(alpha);
         }
+
+        this.setOpacity(alpha);
     }
 
     /**
