@@ -1,4 +1,5 @@
 import { Color } from '../dist/Color';
+import { ColorUtils } from '../dist/ColorUtils';
 import { expect } from 'chai';
 
 describe('Color Tests', function () {
@@ -501,20 +502,19 @@ describe('Color Tests', function () {
         let opacity = 1.0;
         let colorAlphaInt = (alpha & 0xff) << 24 | colorInt;
 
-        //TODO uncomment
-        /*validateColor(color, colorInt, colorAlphaInt, hex, hexShorthand,
+        validateColor3(color, colorInt, colorAlphaInt, hex, hexShorthand,
             hexAlpha, hexShorthandAlpha, red, green, blue, alpha, opacity,
-            hue, saturation, lightness);*/
+            hue, saturation, lightness);
     }
 
     function validateColor2(color: Color, colorInt: number, colorAlphaInt: number,
         hex: string, hexShorthand: string, hexAlpha: string,
         hexShorthandAlpha: string, red: number, green: number, blue: number, alpha: number,
         hue: number, saturation: number, lightness: number) {
-        //TODO uncomment
-        /*validateColor(color, colorInt, colorAlphaInt, hex, hexShorthand,
+
+        validateColor3(color, colorInt, colorAlphaInt, hex, hexShorthand,
             hexAlpha, hexShorthandAlpha, red, green, blue, alpha,
-            alpha / 255.0f, hue, saturation, lightness);*/
+            alpha / 255.0, hue, saturation, lightness);
     }
 
     function validateColor3(color: Color, colorInt: number, colorAlphaInt: number,
@@ -522,56 +522,45 @@ describe('Color Tests', function () {
         hexShorthandAlpha: string, red: number, green: number, blue: number, alpha: number,
         opacity: number, hue: number, saturation: number, lightness: number) {
 
-        //TODO uncomment
+        expect(color.getColorHex()).to.equal(hex);
+        expect(color.getColorHexShorthand()).to.equal(hexShorthand);
+        expect(color.getColorHexWithAlpha()).to.equal(hexAlpha);
+        expect(color.getColorHexShorthandWithAlpha()).to.equal(hexShorthandAlpha);
 
-        /*TestCase.assertEquals(hex, color.getColorHex());
-        TestCase.assertEquals(hexShorthand, color.getColorHexShorthand());
-        TestCase.assertEquals(hexAlpha, color.getColorHexWithAlpha());
-        TestCase.assertEquals(hexShorthandAlpha,
-            color.getColorHexShorthandWithAlpha());
+        expect(color.getColor()).to.equal(colorInt);
+        expect(color.getColorWithAlpha()).to.equal(colorAlphaInt);
 
-        TestCase.assertEquals(colorInt, color.getColor());
-        TestCase.assertEquals(colorAlphaInt, color.getColorWithAlpha());
+        expect(color.getRed()).to.equal(red);
+        expect(color.getRedArithmetic()).to.be.approximately(red / 255.0, 0.0000001);
+        const redHex = hex.substring(1, 3);
+        expect(color.getRedHex()).to.equal(redHex);
+        expect(color.getRedHexShorthand()).to.equal(ColorUtils.shorthandHexSingle(redHex));
 
-        TestCase.assertEquals(red, color.getRed());
-        TestCase.assertEquals(red / 255.0f, color.getRedArithmetic(),
-            0.0000001f);
-    String redHex = hex.substring(1, 3);
-        TestCase.assertEquals(redHex, color.getRedHex());
-        TestCase.assertEquals(ColorUtils.shorthandHexSingle(redHex),
-            color.getRedHexShorthand());
+        expect(color.getGreen()).to.equal(green);
+        expect(color.getGreenArithmetic()).to.be.approximately(green / 255.0, 0.0000001);
+        const greenHex = hex.substring(3, 5);
+        expect(color.getGreenHex()).to.equal(greenHex);
+        expect(color.getGreenHexShorthand()).to.equal(ColorUtils.shorthandHexSingle(greenHex));
 
-        TestCase.assertEquals(green, color.getGreen());
-        TestCase.assertEquals(green / 255.0f, color.getGreenArithmetic(),
-            0.0000001f);
-    String greenHex = hex.substring(3, 5);
-        TestCase.assertEquals(greenHex, color.getGreenHex());
-        TestCase.assertEquals(ColorUtils.shorthandHexSingle(greenHex),
-            color.getGreenHexShorthand());
+        expect(color.getBlue()).to.equal(blue);
+        expect(color.getBlueArithmetic()).to.be.approximately(blue / 255.0, 0.0000001);
+        const blueHex = hex.substring(5, 7);
+        expect(color.getBlueHex()).to.equal(blueHex);
+        expect(color.getBlueHexShorthand()).to.equal(ColorUtils.shorthandHexSingle(blueHex));
 
-        TestCase.assertEquals(blue, color.getBlue());
-        TestCase.assertEquals(blue / 255.0f, color.getBlueArithmetic(),
-            0.0000001f);
-    String blueHex = hex.substring(5, 7);
-        TestCase.assertEquals(blueHex, color.getBlueHex());
-        TestCase.assertEquals(ColorUtils.shorthandHexSingle(blueHex),
-            color.getBlueHexShorthand());
+        expect(color.getOpacity()).to.be.approximately(opacity, 0.0000001);
+        expect(color.getAlpha()).to.equal(alpha);
+        expect(color.getAlphaArithmetic()).to.be.approximately(opacity, 0.0000001);
+        const alphaHex = hexAlpha.substring(1, 3);
+        expect(color.getAlphaHex()).to.equal(alphaHex);
+        expect(color.getAlphaHexShorthand()).to.equal(ColorUtils.shorthandHexSingle(alphaHex));
 
-        TestCase.assertEquals(opacity, color.getOpacity(), 0.0000001f);
-        TestCase.assertEquals(alpha, color.getAlpha());
-        TestCase.assertEquals(opacity, color.getAlphaArithmetic(), 0.0000001f);
-    String alphaHex = hexAlpha.substring(1, 3);
-        TestCase.assertEquals(alphaHex, color.getAlphaHex());
-        TestCase.assertEquals(ColorUtils.shorthandHexSingle(alphaHex),
-            color.getAlphaHexShorthand());
-
-        float[] hsl = color.getHSL();
-        TestCase.assertEquals(hue, hsl[0], 0.5f);
-        TestCase.assertEquals(saturation, hsl[1], 0.01f);
-        TestCase.assertEquals(lightness, hsl[2], 0.01f);
-        TestCase.assertEquals(hue, color.getHue(), 0.5f);
-        TestCase.assertEquals(saturation, color.getSaturation(), 0.01f);
-        TestCase.assertEquals(lightness, color.getLightness(), 0.01f);*/
-
+        const hsl = color.getHSL();
+        expect(hsl[0]).to.be.approximately(hue, 0.5);
+        expect(hsl[1]).to.be.approximately(saturation, 0.01);
+        expect(hsl[2]).to.be.approximately(lightness, 0.0);
+        expect(color.getHue()).to.be.approximately(hue, 0.5);
+        expect(color.getSaturation()).to.be.approximately(saturation, 0.01);
+        expect(color.getLightness()).to.be.approximately(lightness, 0.01);
     }
 })
