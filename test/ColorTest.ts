@@ -5,71 +5,70 @@ import { expect } from 'chai';
 describe('Color Tests', function () {
 
     it('test color creation', function () {
-        expect.fail('Not implemented');
-        /*Color color = new Color();
+        const color = new Color();
 
         // Default color, opaque black
-        validateColor(color, 0, "#000000", "#000", 0, 0, 0, 0.0f, 0.0f, 0.0f);
+        validateColor(color, 0, "#000000", "#000", 0, 0, 0, 0.0, 0.0, 0.0);
 
         color.setRed(64);
-        validateColor(color, 0x400000, "#400000", "#400000", 64, 0, 0, 0.0f,
-                1.0f, 0.13f);
-        color.setRed(128 / 255.0f);
-        validateColor(color, 0x800000, "#800000", "#800000", 128, 0, 0, 0.0f,
-                1.0f, 0.25f);
+        validateColor(color, 0x400000, "#400000", "#400000", 64, 0, 0, 0.0,
+            1.0, 0.13);
+        color.setRed(128 / 255.0);
+        validateColor(color, 0x800000, "#800000", "#800000", 128, 0, 0, 0.0,
+            1.0, 0.25);
         color.setRed("C0");
-        validateColor(color, 0xC00000, "#C00000", "#C00000", 192, 0, 0, 0.0f,
-                1.0f, 0.38f);
+        validateColor(color, 0xC00000, "#C00000", "#C00000", 192, 0, 0, 0.0,
+            1.0, 0.38);
         color.setRed(0xFF);
-        validateColor(color, 0xFF0000, "#FF0000", "#F00", 255, 0, 0, 0.0f, 1.0f,
-                0.5f);
-        TestCase.assertTrue(color.isOpaque());
+        validateColor(color, 0xFF0000, "#FF0000", "#F00", 255, 0, 0, 0.0, 1.0,
+            0.5);
+        expect(color.isOpaque()).to.be.true;
 
         color.setGreen(64);
-        validateColor(color, 0xFF4000, "#FF4000", "#FF4000", 255, 64, 0, 15.1f,
-                1.0f, 0.5f);
-        color.setGreen(128 / 255.0f);
-        validateColor(color, 0xFF8000, "#FF8000", "#FF8000", 255, 128, 0, 30.1f,
-                1.0f, 0.5f);
+        validateColor(color, 0xFF4000, "#FF4000", "#FF4000", 255, 64, 0, 15.1,
+            1.0, 0.5);
+        color.setGreen(128 / 255.0);
+        validateColor(color, 0xFF8000, "#FF8000", "#FF8000", 255, 128, 0, 30.1,
+            1.0, 0.5);
         color.setGreen("c0");
-        validateColor(color, 0xFFC000, "#FFC000", "#FFC000", 255, 192, 0, 45.2f,
-                1.0f, 0.5f);
+        validateColor(color, 0xFFC000, "#FFC000", "#FFC000", 255, 192, 0, 45.2,
+            1.0, 0.5);
         color.setGreen(0xFF);
-        validateColor(color, 0xFFFF00, "#FFFF00", "#FF0", 255, 255, 0, 60.0f,
-                1.0f, 0.5f);
-        TestCase.assertTrue(color.isOpaque());
+        validateColor(color, 0xFFFF00, "#FFFF00", "#FF0", 255, 255, 0, 60.0,
+            1.0, 0.5);
+        expect(color.isOpaque()).to.be.true;
 
         color.setBlue(64);
         validateColor(color, 0xFFFF40, "#FFFF40", "#FFFF40", 255, 255, 64,
-                60.0f, 1.0f, 0.63f);
-        color.setBlue(128 / 255.0f);
+            60.0, 1.0, 0.63);
+        color.setBlue(128 / 255.0);
         validateColor(color, 0xFFFF80, "#FFFF80", "#FFFF80", 255, 255, 128,
-                60.0f, 1.0f, 0.75f);
+            60.0, 1.0, 0.75);
         color.setBlue("C0");
         validateColor(color, 0xFFFFC0, "#FFFFC0", "#FFFFC0", 255, 255, 192,
-                60.0f, 1.0f, 0.88f);
+            60.0, 1.0, 0.88);
         color.setBlue(0xFF);
-        validateColor(color, 0xFFFFFF, "#FFFFFF", "#FFF", 255, 255, 255, 0.0f,
-                0.0f, 1.0f);
-        TestCase.assertTrue(color.isOpaque());
+        validateColor(color, 0xFFFFFF, "#FFFFFF", "#FFF", 255, 255, 255, 0.0,
+            0.0, 1.0);
+        expect(color.isOpaque()).to.be.true;
 
         color.setAlpha(64);
-        validateColor(color, 0xFFFFFF, 0x40FFFFFF, "#FFFFFF", "#FFF",
-                "#40FFFFFF", "#40FFFFFF", 255, 255, 255, 64, 0.0f, 0.0f, 1.0f);
-        TestCase.assertFalse(color.isOpaque());
-        color.setOpacity(0.5f);
-        validateColor(color, 0xFFFFFF, 0x80FFFFFF, "#FFFFFF", "#FFF",
-                "#80FFFFFF", "#80FFFFFF", 255, 255, 255, 128, 0.5f, 0.0f, 0.0f,
-                1.0f);
-        TestCase.assertFalse(color.isOpaque());
+        validateColor2(color, 0xFFFFFF, 0x40FFFFFF, "#FFFFFF", "#FFF",
+            "#40FFFFFF", "#40FFFFFF", 255, 255, 255, 64, 0.0, 0.0, 1.0);
+        expect(color.isOpaque()).to.be.false;
+        color.setOpacity(0.5);
+        validateColor3(color, 0xFFFFFF, 0x80FFFFFF, "#FFFFFF", "#FFF",
+            "#80FFFFFF", "#80FFFFFF", 255, 255, 255, 128, 0.5, 0.0, 0.0,
+            1.0);
+        expect(color.isOpaque()).to.be.false;
         color.setAlpha("C0");
-        validateColor(color, 0xFFFFFF, 0xC0FFFFFF, "#FFFFFF", "#FFF",
-                "#C0FFFFFF", "#C0FFFFFF", 255, 255, 255, 192, 0.0f, 0.0f, 1.0f);
-        TestCase.assertFalse(color.isOpaque());
+        validateColor2(color, 0xFFFFFF, 0xC0FFFFFF, "#FFFFFF", "#FFF",
+            "#C0FFFFFF", "#C0FFFFFF", 255, 255, 255, 192, 0.0, 0.0, 1.0);
+        expect(color.isOpaque()).to.be.false;
         color.setAlpha(0xFF);
-        validateColor(color, 0xFFFFFF, 0xFFFFFFFF, "#FFFFFF", "#FFF",
-                "#FFFFFFFF", "#FFFF", 255, 255, 255, 255, 0.0f, 0.0f, 1.0f);
-        TestCase.assertTrue(color.isOpaque());*/
+        validateColor2(color, 0xFFFFFF, 0xFFFFFFFF, "#FFFFFF", "#FFF",
+            "#FFFFFFFF", "#FFFF", 255, 255, 255, 255, 0.0, 0.0, 1.0);
+        expect(color.isOpaque()).to.be.true;
 
     });
 
