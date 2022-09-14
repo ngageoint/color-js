@@ -144,195 +144,168 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.getBlue("d4a1b2C3")).to.equal("C3");
 		expect(ColorUtils.getAlpha("DdA1B2C3")).to.equal("Dd");
 
-		/*TestCase.assertEquals("A1", ColorUtils.getRed("#A1B2C3"));
-		TestCase.assertEquals("b2", ColorUtils.getGreen("#a1b2c3"));
-		TestCase.assertEquals("C3", ColorUtils.getBlue("#a1b2C3"));
-		TestCase.assertNull(ColorUtils.getAlpha("#A1B2C3"));
-		TestCase.assertEquals("A1", ColorUtils.getRed("#D4A1B2C3"));
-		TestCase.assertEquals("b2", ColorUtils.getGreen("#d4a1b2c3"));
-		TestCase.assertEquals("C3", ColorUtils.getBlue("#d4a1b2C3"));
-		TestCase.assertEquals("dD", ColorUtils.getAlpha("#dDA1B2C3"));
+		expect(ColorUtils.getRed("#A1B2C3")).to.equal("A1");
+		expect(ColorUtils.getGreen("#a1b2c3")).to.equal("b2");
+		expect(ColorUtils.getBlue("#a1b2C3")).to.equal("C3");
+		expect(ColorUtils.getAlpha("#A1B2C3")).to.be.null;
+		expect(ColorUtils.getRed("#D4A1B2C3")).to.equal("A1");
+		expect(ColorUtils.getGreen("#d4a1b2c3")).to.equal("b2");
+		expect(ColorUtils.getBlue("#d4a1b2C3")).to.equal("C3");
+		expect(ColorUtils.getAlpha("#dDA1B2C3")).to.equal("dD");
 
-		TestCase.assertEquals("AA", ColorUtils.getRed("ABC"));
-		TestCase.assertEquals("bb", ColorUtils.getGreen("abc"));
-		TestCase.assertEquals("CC", ColorUtils.getBlue("abC"));
-		TestCase.assertNull(ColorUtils.getAlpha("ABC"));
-		TestCase.assertEquals("AA", ColorUtils.getRed("DABC"));
-		TestCase.assertEquals("bb", ColorUtils.getGreen("dabc"));
-		TestCase.assertEquals("CC", ColorUtils.getBlue("dabC"));
-		TestCase.assertEquals("DD", ColorUtils.getAlpha("DABC"));
+		expect(ColorUtils.getRed("ABC")).to.equal("AA");
+		expect(ColorUtils.getGreen("abc")).to.equal("bb");
+		expect(ColorUtils.getBlue("abC")).to.equal("CC");
+		expect(ColorUtils.getAlpha("ABC")).to.be.null;
+		expect(ColorUtils.getRed("DABC")).to.equal("AA");
+		expect(ColorUtils.getGreen("dabc")).to.equal("bb");
+		expect(ColorUtils.getBlue("dabC")).to.equal("CC");
+		expect(ColorUtils.getAlpha("DABC")).to.equal("DD");
 
-		TestCase.assertEquals("AA", ColorUtils.getRed("#ABC"));
-		TestCase.assertEquals("bb", ColorUtils.getGreen("#abc"));
-		TestCase.assertEquals("CC", ColorUtils.getBlue("#abC"));
-		TestCase.assertNull(ColorUtils.getAlpha("#ABC"));
-		TestCase.assertEquals("AA", ColorUtils.getRed("#DABC"));
-		TestCase.assertEquals("bb", ColorUtils.getGreen("#dabc"));
-		TestCase.assertEquals("CC", ColorUtils.getBlue("#dabC"));
-		TestCase.assertEquals("DD", ColorUtils.getAlpha("#DABC"));
+		expect(ColorUtils.getRed("#ABC")).to.equal("AA");
+		expect(ColorUtils.getGreen("#abc")).to.equal("bb");
+		expect(ColorUtils.getBlue("#abC")).to.equal("CC");
+		expect(ColorUtils.getAlpha("#ABC")).to.be.null;
+		expect(ColorUtils.getRed("#DABC")).to.equal("AA");
+		expect(ColorUtils.getGreen("#dabc")).to.equal("bb");
+		expect(ColorUtils.getBlue("#dabC")).to.equal("CC");
+		expect(ColorUtils.getAlpha("#DABC")).to.equal("DD");
 
-		TestCase.assertEquals("01", ColorUtils.getRed("010203"));
-		TestCase.assertEquals("02", ColorUtils.getGreen("010203"));
-		TestCase.assertEquals("03", ColorUtils.getBlue("010203"));
-		TestCase.assertNull(ColorUtils.getAlpha("010203"));
-		TestCase.assertEquals("01", ColorUtils.getRed("04010203"));
-		TestCase.assertEquals("02", ColorUtils.getGreen("04010203"));
-		TestCase.assertEquals("03", ColorUtils.getBlue("04010203"));
-		TestCase.assertEquals("04", ColorUtils.getAlpha("04010203"));
+		expect(ColorUtils.getRed("010203")).to.equal("01");
+		expect(ColorUtils.getGreen("010203")).to.equal("02");
+		expect(ColorUtils.getBlue("010203")).to.equal("03");
+		expect(ColorUtils.getAlpha("010203")).to.be.null;
+		expect(ColorUtils.getRed("04010203")).to.equal("01");
+		expect(ColorUtils.getGreen("04010203")).to.equal("02");
+		expect(ColorUtils.getBlue("04010203")).to.equal("03");
+		expect(ColorUtils.getAlpha("04010203")).to.equal("04");
 
-		TestCase.assertEquals("01", ColorUtils.getRed("#010203"));
-		TestCase.assertEquals("02", ColorUtils.getGreen("#010203"));
-		TestCase.assertEquals("03", ColorUtils.getBlue("#010203"));
-		TestCase.assertNull(ColorUtils.getAlpha("#010203"));
-		TestCase.assertEquals("01", ColorUtils.getRed("#04010203"));
-		TestCase.assertEquals("02", ColorUtils.getGreen("#04010203"));
-		TestCase.assertEquals("03", ColorUtils.getBlue("#04010203"));
-		TestCase.assertEquals("04", ColorUtils.getAlpha("#04010203"));
+		expect(ColorUtils.getRed("#010203")).to.equal("01");
+		expect(ColorUtils.getGreen("#010203")).to.equal("02");
+		expect(ColorUtils.getBlue("#010203")).to.equal("03");
+		expect(ColorUtils.getAlpha("#010203")).to.be.null;
+		expect(ColorUtils.getRed("#04010203")).to.equal("01");
+		expect(ColorUtils.getGreen("#04010203")).to.equal("02");
+		expect(ColorUtils.getBlue("#04010203")).to.equal("03");
+		expect(ColorUtils.getAlpha("#04010203")).to.equal("04");
 
-		TestCase.assertEquals("11", ColorUtils.getRed("123"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("123"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("123"));
-		TestCase.assertNull(ColorUtils.getAlpha("123"));
-		TestCase.assertEquals("11", ColorUtils.getRed("4123"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("4123"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("4123"));
-		TestCase.assertEquals("44", ColorUtils.getAlpha("4123"));
+		expect(ColorUtils.getRed("123")).to.equal("11");
+		expect(ColorUtils.getGreen("123")).to.equal("22");
+		expect(ColorUtils.getBlue("123")).to.equal("33");
+		expect(ColorUtils.getAlpha("123")).to.be.null;
+		expect(ColorUtils.getRed("4123")).to.equal("11");
+		expect(ColorUtils.getGreen("4123")).to.equal("22");
+		expect(ColorUtils.getBlue("4123")).to.equal("33");
+		expect(ColorUtils.getAlpha("4123")).to.equal("44");
 
-		TestCase.assertEquals("11", ColorUtils.getRed("#123"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("#123"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("#123"));
-		TestCase.assertNull(ColorUtils.getAlpha("#123"));
-		TestCase.assertEquals("11", ColorUtils.getRed("#4123"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("#4123"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("#4123"));
-		TestCase.assertEquals("44", ColorUtils.getAlpha("#4123"));
+		expect(ColorUtils.getRed("#123")).to.equal("11");
+		expect(ColorUtils.getGreen("#123")).to.equal("22");
+		expect(ColorUtils.getBlue("#123")).to.equal("33");
+		expect(ColorUtils.getAlpha("#123")).to.be.null;
+		expect(ColorUtils.getRed("#4123")).to.equal("11");
+		expect(ColorUtils.getGreen("#4123")).to.equal("22");
+		expect(ColorUtils.getBlue("#4123")).to.equal("33");
+		expect(ColorUtils.getAlpha("#4123")).to.equal("44");
 
-		TestCase.assertEquals("11", ColorUtils.getRed("112233"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("112233"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("112233"));
-		TestCase.assertNull(ColorUtils.getAlpha("112233"));
-		TestCase.assertEquals("11", ColorUtils.getRed("44112233"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("44112233"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("44112233"));
-		TestCase.assertEquals("44", ColorUtils.getAlpha("44112233"));
+		expect(ColorUtils.getRed("112233")).to.equal("11");
+		expect(ColorUtils.getGreen("112233")).to.equal("22");
+		expect(ColorUtils.getBlue("112233")).to.equal("33");
+		expect(ColorUtils.getAlpha("112233")).to.be.null;
+		expect(ColorUtils.getRed("44112233")).to.equal("11");
+		expect(ColorUtils.getGreen("44112233")).to.equal("22");
+		expect(ColorUtils.getBlue("44112233")).to.equal("33");
+		expect(ColorUtils.getAlpha("44112233")).to.equal("44");
 
-		TestCase.assertEquals("11", ColorUtils.getRed("#112233"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("#112233"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("#112233"));
-		TestCase.assertNull(ColorUtils.getAlpha("#112233"));
-		TestCase.assertEquals("11", ColorUtils.getRed("#44112233"));
-		TestCase.assertEquals("22", ColorUtils.getGreen("#44112233"));
-		TestCase.assertEquals("33", ColorUtils.getBlue("#44112233"));
-		TestCase.assertEquals("44", ColorUtils.getAlpha("#44112233"));
+		expect(ColorUtils.getRed("#112233")).to.equal("11");
+		expect(ColorUtils.getGreen("#112233")).to.equal("22");
+		expect(ColorUtils.getBlue("#112233")).to.equal("33");
+		expect(ColorUtils.getAlpha("#112233")).to.be.null;
+		expect(ColorUtils.getRed("#44112233")).to.equal("11");
+		expect(ColorUtils.getGreen("#44112233")).to.equal("22");
+		expect(ColorUtils.getBlue("#44112233")).to.equal("33");
+		expect(ColorUtils.getAlpha("#44112233")).to.equal("44");
 
-		TestCase.assertEquals(0, ColorUtils.getRed(-16711936));
-		TestCase.assertEquals(255, ColorUtils.getGreen(-16711936));
-		TestCase.assertEquals(0, ColorUtils.getBlue(-16711936));
-		TestCase.assertEquals(255, ColorUtils.getAlpha(-16711936));
+		expect(ColorUtils.getRed(-16711936)).to.equal(0);
+		expect(ColorUtils.getGreen(-16711936)).to.equal(255);
+		expect(ColorUtils.getBlue(-16711936)).to.equal(0);
+		expect(ColorUtils.getAlpha(-16711936)).to.equal(255);
 
-		TestCase.assertEquals(0, ColorUtils.getRed(0xFF00FF00));
-		TestCase.assertEquals(255, ColorUtils.getGreen(0xff00ff00));
-		TestCase.assertEquals(0, ColorUtils.getBlue(0xFF00FF00));
-		TestCase.assertEquals(255, ColorUtils.getAlpha(0xff00ff00));
+		expect(ColorUtils.getRed(0xFF00FF00)).to.equal(0);
+		expect(ColorUtils.getGreen(0xff00ff00)).to.equal(255);
+		expect(ColorUtils.getBlue(0xFF00FF00)).to.equal(0);
+		expect(ColorUtils.getAlpha(0xff00ff00)).to.equal(255);
 
-		TestCase.assertEquals(0, ColorUtils.getRed(65280));
-		TestCase.assertEquals(255, ColorUtils.getGreen(65280));
-		TestCase.assertEquals(0, ColorUtils.getBlue(65280));
-		TestCase.assertEquals(0, ColorUtils.getAlpha(65280));
+		expect(ColorUtils.getRed(65280)).to.equal(0);
+		expect(ColorUtils.getGreen(65280)).to.equal(255);
+		expect(ColorUtils.getBlue(65280)).to.equal(0);
+		expect(ColorUtils.getAlpha(65280)).to.equal(0);
 
-		TestCase.assertEquals(0, ColorUtils.getRed(0x00FF00));
-		TestCase.assertEquals(255, ColorUtils.getGreen(0x00ff00));
-		TestCase.assertEquals(0, ColorUtils.getBlue(0x00FF00));
-		TestCase.assertEquals(0, ColorUtils.getAlpha(0x00ff00));
+		expect(ColorUtils.getRed(0x00FF00)).to.equal(0);
+		expect(ColorUtils.getGreen(0x00ff00)).to.equal(255);
+		expect(ColorUtils.getBlue(0x00FF00)).to.equal(0);
+		expect(ColorUtils.getAlpha(0x00ff00)).to.equal(0);
 
-		TestCase.assertEquals(65280, ColorUtils.toColor(ColorUtils.toRGB("00"),
-			ColorUtils.toRGB("FF"), ColorUtils.toRGB("00")));
-		TestCase.assertEquals(-16711936,
-			ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
-				ColorUtils.toRGB("FF"), ColorUtils.toRGB("00")));
-		TestCase.assertEquals(-16711936,
-			ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
-				ColorUtils.toRGB("ff"), ColorUtils.toRGB("00"),
-				ColorUtils.toRGB("fF")));
+		expect(ColorUtils.toColor(ColorUtils.toRGB("00"),
+			ColorUtils.toRGB("FF"), ColorUtils.toRGB("00"))).to.equal(65280);
+		expect(ColorUtils.toColorWithDefaultAlpha(ColorUtils.toRGB("00"),
+			ColorUtils.toRGB("FF"), ColorUtils.toRGB("00"))).to.equal(-16711936);
+		expect(ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
+			ColorUtils.toRGB("ff"), ColorUtils.toRGB("00"),
+			ColorUtils.toRGB("fF"))).to.equal(-16711936);
 
-		TestCase.assertEquals("#A0B0C0", ColorUtils.toColor("A0", "B0", "C0"));
-		TestCase.assertEquals("#FFA0B0C0",
-			ColorUtils.toColorWithAlpha("A0", "B0", "C0"));
-		TestCase.assertEquals("#A0B0C0",
-			ColorUtils.toColorShorthand("A0", "B0", "C0"));
-		TestCase.assertEquals("#ABC",
-			ColorUtils.toColorShorthand("AA", "BB", "CC"));
-		TestCase.assertEquals("#FFA0B0C0",
-			ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0"));
-		TestCase.assertEquals("#FABC",
-			ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC"));
-		TestCase.assertEquals("#D0A0B0C0",
-			ColorUtils.toColorWithAlpha("A0", "B0", "C0", "D0"));
-		TestCase.assertEquals("#D0A0B0C0",
-			ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0", "D0"));
-		TestCase.assertEquals("#D0AABBCC",
-			ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "D0"));
-		TestCase.assertEquals("#DABC",
-			ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "DD"));
+		expect(ColorUtils.toColor("A0", "B0", "C0")).to.equal("#A0B0C0");
+		expect(ColorUtils.toColorWithDefaultAlpha("A0", "B0", "C0")).to.equal("#FFA0B0C0");
+		expect(ColorUtils.toColorShorthand("A0", "B0", "C0")).to.equal("#A0B0C0");
+		expect(ColorUtils.toColorShorthand("AA", "BB", "CC")).to.equal("#ABC");
+		expect(ColorUtils.toColorShorthandWithDefaultAlpha("A0", "B0", "C0")).to.equal("#FFA0B0C0");
+		expect(ColorUtils.toColorShorthandWithDefaultAlpha("AA", "BB", "CC")).to.equal("#FABC");
+		expect(ColorUtils.toColorWithAlpha("A0", "B0", "C0", "D0")).to.equal("#D0A0B0C0");
+		expect(ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0", "D0")).to.equal("#D0A0B0C0");
+		expect(ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "D0")).to.equal("#D0AABBCC");
+		expect(ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "DD")).to.equal("#DABC");
 
-		TestCase.assertEquals("#a0b0c0", ColorUtils.toColor("a0", "b0", "c0"));
-		TestCase.assertEquals("#ffa0b0c0",
-			ColorUtils.toColorWithAlpha("a0", "b0", "c0"));
-		TestCase.assertEquals("#a0b0c0",
-			ColorUtils.toColorShorthand("a0", "b0", "c0"));
-		TestCase.assertEquals("#abc",
-			ColorUtils.toColorShorthand("aa", "bb", "cc"));
-		TestCase.assertEquals("#ffa0b0c0",
-			ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0"));
-		TestCase.assertEquals("#fabc",
-			ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc"));
-		TestCase.assertEquals("#d0a0b0c0",
-			ColorUtils.toColorWithAlpha("a0", "b0", "c0", "d0"));
-		TestCase.assertEquals("#d0a0b0c0",
-			ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0", "d0"));
-		TestCase.assertEquals("#d0aabbcc",
-			ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "d0"));
-		TestCase.assertEquals("#dabc",
-			ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "dd"));
+		expect(ColorUtils.toColor("a0", "b0", "c0")).to.equal("#a0b0c0");
+		expect(ColorUtils.toColorWithDefaultAlpha("a0", "b0", "c0")).to.equal("#ffa0b0c0");
+		expect(ColorUtils.toColorShorthand("a0", "b0", "c0")).to.equal("#a0b0c0");
+		expect(ColorUtils.toColorShorthand("aa", "bb", "cc")).to.equal("#abc");
+		expect(ColorUtils.toColorShorthandWithDefaultAlpha("a0", "b0", "c0")).to.equal("#ffa0b0c0");
+		expect(ColorUtils.toColorShorthandWithDefaultAlpha("aa", "bb", "cc")).to.equal("#fabc");
+		expect(ColorUtils.toColorWithAlpha("a0", "b0", "c0", "d0")).to.equal("#d0a0b0c0");
+		expect(ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0", "d0")).to.equal("#d0a0b0c0");
+		expect(ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "d0")).to.equal("#d0aabbcc");
+		expect(ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "dd")).to.equal("#dabc");
 
-		TestCase.assertEquals("10a0d1", ColorUtils.shorthandHex("10a0d1"));
-		TestCase.assertEquals("#10a0d1", ColorUtils.shorthandHex("#10a0d1"));
-		TestCase.assertEquals("0D0A0B0C", ColorUtils.shorthandHex("0D0A0B0C"));
-		TestCase.assertEquals("#0D0a0B0c",
-			ColorUtils.shorthandHex("#0D0a0B0c"));
-		TestCase.assertEquals("1ad", ColorUtils.shorthandHex("11aadd"));
-		TestCase.assertEquals("#1aD", ColorUtils.shorthandHex("#11aADd"));
-		TestCase.assertEquals("DABC", ColorUtils.shorthandHex("DDAABBCC"));
-		TestCase.assertEquals("#dAbC", ColorUtils.shorthandHex("#dDAabBCc"));
+		expect(ColorUtils.shorthandHex("10a0d1")).to.equal("10a0d1");
+		expect(ColorUtils.shorthandHex("#10a0d1")).to.equal("#10a0d1");
+		expect(ColorUtils.shorthandHex("0D0A0B0C")).to.equal("0D0A0B0C");
+		expect(ColorUtils.shorthandHex("#0D0a0B0c")).to.equal("#0D0a0B0c");
+		expect(ColorUtils.shorthandHex("11aadd")).to.equal("1ad");
+		expect(ColorUtils.shorthandHex("#11aADd")).to.equal("#1aD");
+		expect(ColorUtils.shorthandHex("DDAABBCC")).to.equal("DABC");
+		expect(ColorUtils.shorthandHex("#dDAabBCc")).to.equal("#dAbC");
 
-		TestCase.assertEquals("10a0d1",
-			ColorUtils.expandShorthandHex("10a0d1"));
-		TestCase.assertEquals("#10a0d1",
-			ColorUtils.expandShorthandHex("#10a0d1"));
-		TestCase.assertEquals("0D0A0B0C",
-			ColorUtils.expandShorthandHex("0D0A0B0C"));
-		TestCase.assertEquals("#0D0a0B0c",
-			ColorUtils.expandShorthandHex("#0D0a0B0c"));
-		TestCase.assertEquals("11aadd", ColorUtils.expandShorthandHex("1ad"));
-		TestCase.assertEquals("#11aaDD", ColorUtils.expandShorthandHex("#1aD"));
-		TestCase.assertEquals("DDAABBCC",
-			ColorUtils.expandShorthandHex("DABC"));
-		TestCase.assertEquals("#ddAAbbCC",
-			ColorUtils.expandShorthandHex("#dAbC"));
+		expect(ColorUtils.expandShorthandHex("10a0d1")).to.equal("10a0d1");
+		expect(ColorUtils.expandShorthandHex("#10a0d1")).to.equal("#10a0d1");
+		expect(ColorUtils.expandShorthandHex("0D0A0B0C")).to.equal("0D0A0B0C");
+		expect(ColorUtils.expandShorthandHex("#0D0a0B0c")).to.equal("#0D0a0B0c");
+		expect(ColorUtils.expandShorthandHex("1ad")).to.equal("11aadd");
+		expect(ColorUtils.expandShorthandHex("#1aD")).to.equal("#11aaDD");
+		expect(ColorUtils.expandShorthandHex("DABC")).to.equal("DDAABBCC");
+		expect(ColorUtils.expandShorthandHex("#dAbC")).to.equal("#ddAAbbCC");
 
-		TestCase.assertEquals("10", ColorUtils.shorthandHexSingle("10"));
-		TestCase.assertEquals("0A", ColorUtils.shorthandHexSingle("0A"));
-		TestCase.assertEquals("d", ColorUtils.shorthandHexSingle("dd"));
-		TestCase.assertEquals("c", ColorUtils.shorthandHexSingle("cC"));
-		TestCase.assertEquals("A", ColorUtils.shorthandHexSingle("Aa"));
-		TestCase.assertEquals("B", ColorUtils.shorthandHexSingle("BB"));
+		expect(ColorUtils.shorthandHexSingle("10")).to.equal("10");
+		expect(ColorUtils.shorthandHexSingle("0A")).to.equal("0A");
+		expect(ColorUtils.shorthandHexSingle("dd")).to.equal("d");
+		expect(ColorUtils.shorthandHexSingle("cC")).to.equal("c");
+		expect(ColorUtils.shorthandHexSingle("Aa")).to.equal("A");
+		expect(ColorUtils.shorthandHexSingle("BB")).to.equal("B");
 
-		TestCase.assertEquals("10", ColorUtils.expandShorthandHexSingle("10"));
-		TestCase.assertEquals("0A", ColorUtils.expandShorthandHexSingle("0A"));
-		TestCase.assertEquals("dd", ColorUtils.expandShorthandHexSingle("d"));
-		TestCase.assertEquals("CC", ColorUtils.expandShorthandHexSingle("C"));
+		expect(ColorUtils.expandShorthandHexSingle("10")).to.equal("10");
+		expect(ColorUtils.expandShorthandHexSingle("0A")).to.equal("0A");
+		expect(ColorUtils.expandShorthandHexSingle("d")).to.equal("dd");
+		expect(ColorUtils.expandShorthandHexSingle("C")).to.equal("CC");
 
-		float[] hsl = ColorUtils.toHSL(0, 0, 0);
+		/*float[] hsl = ColorUtils.toHSL(0, 0, 0);
 		TestCase.assertEquals(0.0f, hsl[0]);
 		TestCase.assertEquals(0.0f, hsl[1]);
 		TestCase.assertEquals(0.0f, hsl[2]);
