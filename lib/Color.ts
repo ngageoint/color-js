@@ -271,13 +271,13 @@ export class Color {
     public setRed(red: number | string): void {
         if (typeof red === 'string') {
             red = ColorUtils.toArithmeticRGB(red);
-        }
-
-        if (!Number.isInteger) {
-            ColorUtils.validateArithmeticRGB(red);
-            this.red = red;
         } else {
-            this.setRed(ColorUtils.toHex(red));
+            if (!Number.isInteger) {
+                ColorUtils.validateArithmeticRGB(red);
+                this.red = red;
+            } else {
+                this.setRed(ColorUtils.toHex(red));
+            }
         }
     }
 
@@ -307,11 +307,13 @@ export class Color {
         if (typeof green === 'string') {
             green = ColorUtils.toArithmeticRGB(green);
         }
-        if (!Number.isInteger(green)) {
-            ColorUtils.validateArithmeticRGB(green);
-            this.green = green;
-        } else {
-            this.setGreen(ColorUtils.toHex(green));
+        else {
+            if (!Number.isInteger(green)) {
+                ColorUtils.validateArithmeticRGB(green);
+                this.green = green;
+            } else {
+                this.setGreen(ColorUtils.toHex(green));
+            }
         }
     }
 
@@ -340,13 +342,13 @@ export class Color {
     public setBlue(blue: number | string): void {
         if (typeof blue === 'string') {
             blue = ColorUtils.toArithmeticRGB(blue);
-        }
-
-        if (!Number.isInteger(blue)) {
-            ColorUtils.validateArithmeticRGB(blue);
-            this.blue = blue;
         } else {
-            this.setBlue(ColorUtils.toHex(blue));
+            if (!Number.isInteger(blue)) {
+                ColorUtils.validateArithmeticRGB(blue);
+                this.blue = blue;
+            } else {
+                this.setBlue(ColorUtils.toHex(blue));
+            }
         }
     }
 
