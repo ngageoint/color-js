@@ -305,80 +305,74 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.expandShorthandHexSingle("d")).to.equal("dd");
 		expect(ColorUtils.expandShorthandHexSingle("C")).to.equal("CC");
 
-		/*float[] hsl = ColorUtils.toHSL(0, 0, 0);
-		TestCase.assertEquals(0.0f, hsl[0]);
-		TestCase.assertEquals(0.0f, hsl[1]);
-		TestCase.assertEquals(0.0f, hsl[2]);
+		let hsl = ColorUtils.toHSL(0, 0, 0);
+		expect(hsl[0]).to.equal(0.0);
+		expect(hsl[1]).to.equal(0);
+		expect(hsl[2]).to.equal(0.0);
 
-		float[] arithmeticRGB = ColorUtils.toArithmeticRGB(0.0f, 0.0f, 0.0f);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[0]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[1]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[2]);
+		let arithmeticRGB: number[] = ColorUtils.toArithmeticRGBFromHSL(0.0, 0.0, 0.0);
+		expect(arithmeticRGB[0]).to.equal(ColorUtils.toArithmeticRGB(0));
+		expect(arithmeticRGB[1]).to.equal(ColorUtils.toArithmeticRGB(0));
+		expect(arithmeticRGB[2]).to.equal(ColorUtils.toArithmeticRGB(0));
 
 		hsl = ColorUtils.toHSL(255, 0, 0);
-		TestCase.assertEquals(0.0f, hsl[0]);
-		TestCase.assertEquals(1.0f, hsl[1]);
-		TestCase.assertEquals(0.5f, hsl[2]);
+		expect(hsl[0]).to.equal(0.0);
+		expect(hsl[1]).to.equal(1.0);
+		expect(hsl[2]).to.equal(0.5);
 
-		arithmeticRGB = ColorUtils.toArithmeticRGB(0.0f, 1.0f, 0.5f);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-			arithmeticRGB[0]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[1]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[2]);
+		arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(0.0, 1.0, 0.5);
+		expect(arithmeticRGB[0]).to.equal(ColorUtils.toArithmeticRGB(255));
+		expect(arithmeticRGB[1]).to.equal(ColorUtils.toArithmeticRGB(0));
+		expect(arithmeticRGB[2]).to.equal(ColorUtils.toArithmeticRGB(0));
 
 		hsl = ColorUtils.toHSL(0, 255, 0);
-		TestCase.assertEquals(120.0f, hsl[0]);
-		TestCase.assertEquals(1.0f, hsl[1]);
-		TestCase.assertEquals(0.5f, hsl[2]);
+		expect(hsl[0]).to.equal(120.0);
+		expect(hsl[1]).to.equal(1.0);
+		expect(hsl[2]).to.equal(0.5);
 
-		arithmeticRGB = ColorUtils.toArithmeticRGB(120.0f, 1.0f, 0.5f);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[0]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-			arithmeticRGB[1]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[2]);
+		arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(120.0, 1.0, 0.5);
+		expect(arithmeticRGB[0]).to.equal(ColorUtils.toArithmeticRGB(0));
+		expect(arithmeticRGB[1]).to.equal(ColorUtils.toArithmeticRGB(255));
+		expect(arithmeticRGB[2]).to.equal(ColorUtils.toArithmeticRGB(0));
 
 		hsl = ColorUtils.toHSL(0, 0, 255);
-		TestCase.assertEquals(240.0f, hsl[0]);
-		TestCase.assertEquals(1.0f, hsl[1]);
-		TestCase.assertEquals(0.5f, hsl[2]);
+		expect(hsl[0]).to.equal(240.0);
+		expect(hsl[1]).to.equal(1.0);
+		expect(hsl[2]).to.equal(0.5);
 
-		arithmeticRGB = ColorUtils.toArithmeticRGB(240.0f, 1.0f, 0.5f);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[0]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[1]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-			arithmeticRGB[2]);
+		arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(240.0, 1.0, 0.5);
+		expect(arithmeticRGB[0]).to.equal(ColorUtils.toArithmeticRGB(0));
+		expect(arithmeticRGB[1]).to.equal(ColorUtils.toArithmeticRGB(0));
+		expect(arithmeticRGB[2]).to.equal(ColorUtils.toArithmeticRGB(255));
 
 		hsl = ColorUtils.toHSL(255, 255, 255);
-		TestCase.assertEquals(0.0f, hsl[0]);
-		TestCase.assertEquals(0.0f, hsl[1]);
-		TestCase.assertEquals(1.0f, hsl[2]);
+		expect(hsl[0]).to.equal(0.0);
+		expect(hsl[1]).to.equal(0.0);
+		expect(hsl[2]).to.equal(1.0);
 
-		arithmeticRGB = ColorUtils.toArithmeticRGB(0.0f, 0.0f, 1.0f);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-			arithmeticRGB[0]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-			arithmeticRGB[1]);
-		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-			arithmeticRGB[2]);
+		arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(0.0, 0.0, 1.0);
+		expect(arithmeticRGB[0]).to.equal(ColorUtils.toArithmeticRGB(255));
+		expect(arithmeticRGB[1]).to.equal(ColorUtils.toArithmeticRGB(255));
+		expect(arithmeticRGB[2]).to.equal(ColorUtils.toArithmeticRGB(255));
 
 		hsl = ColorUtils.toHSL(200, 165, 10);
-		TestCase.assertEquals(48.94737f, hsl[0]);
-		TestCase.assertEquals(0.9047619f, hsl[1]);
-		TestCase.assertEquals(0.4117647f, hsl[2]);
+		expect(hsl[0]).to.be.approximately(48.94737, 0.00001);
+		expect(hsl[1]).to.be.approximately(0.9047619, 0.00001);
+		expect(hsl[2]).to.be.approximately(0.4117647, 0.00001);
 
-		int[] rgb = ColorUtils.toRGB(48.94737f, 0.9047619f, 0.4117647f);
-		TestCase.assertEquals(200, rgb[0]);
-		TestCase.assertEquals(165, rgb[1]);
-		TestCase.assertEquals(10, rgb[2]);
+		let rgb = ColorUtils.toRGBFromHSL(48.94737, 0.9047619, 0.4117647);
+		expect(rgb[0]).to.equal(200);
+		expect(rgb[1]).to.equal(165);
+		expect(rgb[2]).to.equal(10);
 
 		hsl = ColorUtils.toHSL(52, 113, 82);
-		TestCase.assertEquals(149.50821f, hsl[0]);
-		TestCase.assertEquals(0.36969694f, hsl[1]);
-		TestCase.assertEquals(0.32352942f, hsl[2]);
+		expect(hsl[0]).to.be.approximately(149.50821, 0.001);
+		expect(hsl[1]).to.be.approximately(0.36969694, 0.00001);
+		expect(hsl[2]).to.be.approximately(0.32352942, 0.00001);
 
-		rgb = ColorUtils.toRGB(149.50821f, 0.36969694f, 0.32352942f);
-		TestCase.assertEquals(52, rgb[0]);
-		TestCase.assertEquals(113, rgb[1]);
-		TestCase.assertEquals(82, rgb[2]);*/
+		rgb = ColorUtils.toRGBFromHSL(149.50821, 0.36969694, 0.32352942);
+		expect(rgb[0]).to.equal(52);
+		expect(rgb[1]).to.equal(113);
+		expect(rgb[2]).to.equal(82);
 	});
 });

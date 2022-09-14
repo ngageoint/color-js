@@ -239,84 +239,65 @@ export class ColorUtils {
     }
 
     /**
-     * Convert red, green, and blue arithmetic values to HSL (hue, saturation,
-     * lightness) values
-     *
-     * @param red
-     *            red color inclusively between 0.0 and 1.0
-     * @param green
-     *            green color inclusively between 0.0 and 1.0
-     * @param blue
-     *            blue color inclusively between 0.0 and 1.0
-     * @return HSL array where: 0 = hue, 1 = saturation, 2 = lightness
-     */
-    public static toHSL(red: number, green: number, blue: number): number[];
-
-    /**
-     * Convert red, green, and blue integer values to HSL (hue, saturation,
-     * lightness) values
-     *
-     * @param red
-     *            red color inclusively between 0 and 255
-     * @param green
-     *            green color inclusively between 0 and 255
-     * @param blue
-     *            blue color inclusively between 0 and 255
-     * @return HSL array where: 0 = hue, 1 = saturation, 2 = lightness
-     */
-    public static toHSL(red: number, green: number, blue: number): number[];
-
+    * Convert red, green, and blue arithmetic values to HSL (hue, saturation,
+    * lightness) values
+    *
+    * @param red
+    *            red color inclusively between 0.0 and 1.0 or between 0 and 255
+    * @param green
+    *            green color inclusively between 0.0 and 1.0 or between 0 and 255
+    * @param blue
+    *            blue color inclusively between 0.0 and 1.0 or between 0 and 255
+    * @return HSL array where: 0 = hue, 1 = saturation, 2 = lightness
+    */
     public static toHSL(red: number, green: number, blue: number): number[] {
-        let hsl: number[];
-
-        if (!Number.isInteger(red)) {
-            ColorUtils.validateArithmeticRGB(red);
-            ColorUtils.validateArithmeticRGB(green);
-            ColorUtils.validateArithmeticRGB(blue);
-
-            const min = Math.min(Math.min(red, green), blue);
-            const max = Math.max(Math.max(red, green), blue);
-
-            const range = max - min;
-
-            let hue = 0.0;
-            if (range > 0.0) {
-                if (red >= green && red >= blue) {
-                    hue = (green - blue) / range;
-                } else if (green >= blue) {
-                    hue = 2 + (blue - red) / range;
-                } else {
-                    hue = 4 + (red - green) / range;
-                }
-            }
-
-            hue *= 60.0;
-            if (hue < 0.) {
-                hue += 360.0;
-            }
-
-            const sum = min + max;
-
-            const lightness = sum / 2.0;
-
-            let saturation: number;
-            if (min == max) {
-                saturation = 0.0;
-            } else {
-                if (lightness < 0.5) {
-                    saturation = range / sum;
-                } else {
-                    saturation = range / (2.0 - max - min);
-                }
-            }
-
-            hsl = [hue, saturation, lightness];
-        } else {
-            hsl = ColorUtils.toHSL(ColorUtils.toArithmeticRGB(red), ColorUtils.toArithmeticRGB(green),
-                ColorUtils.toArithmeticRGB(blue));
+        if (Number.isInteger(red)) {
+            red = ColorUtils.toArithmeticRGB(red);
+            green = ColorUtils.toArithmeticRGB(green);
+            blue = ColorUtils.toArithmeticRGB(blue)
         }
 
-        return hsl;
+        ColorUtils.validateArithmeticRGB(red);
+        ColorUtils.validateArithmeticRGB(green);
+        ColorUtils.validateArithmeticRGB(blue);
+
+        const min = Math.min(Math.min(red, green), blue);
+        const max = Math.max(Math.max(red, green), blue);
+
+        const range = max - min;
+
+        let hue = 0.0;
+        if (range > 0.0) {
+            if (red >= green && red >= blue) {
+                hue = (green - blue) / range;
+            } else if (green >= blue) {
+                hue = 2 + (blue - red) / range;
+            } else {
+                hue = 4 + (red - green) / range;
+            }
+        }
+
+        hue *= 60.0;
+        if (hue < 0.) {
+            hue += 360.0;
+        }
+
+        const sum = min + max;
+
+        const lightness = sum / 2.0;
+
+        let saturation: number;
+        if (min == max) {
+            saturation = 0.0;
+        } else {
+            if (lightness < 0.5) {
+                saturation = range / sum;
+            } else {
+                saturation = range / (2.0 - max - min);
+            }
+        }
+
+        return [hue, saturation, lightness];
     }
 
     /**
