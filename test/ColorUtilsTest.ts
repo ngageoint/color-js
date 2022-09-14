@@ -5,117 +5,114 @@ import { expect } from 'chai';
 describe('ColorUtils Tests', function () {
 
 	it('test valid', function () {
-		//TODO implement
-		//expect(ColorUtils.isValidHex("000000")).to.be.true;
-		/*.assertTrue(ColorUtils.isValidHex("000000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#000000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("00000000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#00000000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("0000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#0000"));
-		TestCase.assertTrue(ColorUtils.isValidHex("FFFFFF"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#FFFFFF"));
-		TestCase.assertTrue(ColorUtils.isValidHex("FFFFFFFF"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#ffffffff"));
-		TestCase.assertTrue(ColorUtils.isValidHex("FfF"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#fFf"));
-		TestCase.assertTrue(ColorUtils.isValidHex("ffff"));
-		TestCase.assertTrue(ColorUtils.isValidHex("#fFfF"));
+		expect(ColorUtils.isValidHex("000000")).to.be.true;
+		expect(ColorUtils.isValidHex("#000000")).to.be.true;
+		expect(ColorUtils.isValidHex("00000000")).to.be.true;
+		expect(ColorUtils.isValidHex("#00000000")).to.be.true;
+		expect(ColorUtils.isValidHex("000")).to.be.true;
+		expect(ColorUtils.isValidHex("#000")).to.be.true;
+		expect(ColorUtils.isValidHex("0000")).to.be.true;
+		expect(ColorUtils.isValidHex("#0000")).to.be.true;
+		expect(ColorUtils.isValidHex("FFFFFF")).to.be.true;
+		expect(ColorUtils.isValidHex("#FFFFFF")).to.be.true;
+		expect(ColorUtils.isValidHex("FFFFFFFF")).to.be.true;
+		expect(ColorUtils.isValidHex("#ffffffff")).to.be.true;
+		expect(ColorUtils.isValidHex("FfF")).to.be.true;
+		expect(ColorUtils.isValidHex("#fFf")).to.be.true;
+		expect(ColorUtils.isValidHex("ffff")).to.be.true;
+		expect(ColorUtils.isValidHex("#fFfF")).to.be.true;
 
-		TestCase.assertFalse(ColorUtils.isValidHex(null));
-		TestCase.assertFalse(ColorUtils.isValidHex(""));
+		expect(ColorUtils.isValidHex(null)).to.be.false;
+		expect(ColorUtils.isValidHex("")).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidHex("00000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("0000000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#00000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#0000000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("000000000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#000000000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("00"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#00"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FFFFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FFFFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FFFFFFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FFFFFFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FF"));
+		expect(ColorUtils.isValidHex("00000")).to.be.false;
+		expect(ColorUtils.isValidHex("0000000")).to.be.false;
+		expect(ColorUtils.isValidHex("#00000")).to.be.false;
+		expect(ColorUtils.isValidHex("#0000000")).to.be.false;
+		expect(ColorUtils.isValidHex("000000000")).to.be.false;
+		expect(ColorUtils.isValidHex("#000000000")).to.be.false;
+		expect(ColorUtils.isValidHex("00")).to.be.false;
+		expect(ColorUtils.isValidHex("#00")).to.be.false;
+		expect(ColorUtils.isValidHex("FFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("FFFFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FFFFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("FFFFFFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FFFFFFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("FF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FF")).to.be.false;
+		
+		expect(ColorUtils.isValidHex("G00000")).to.be.false;
+		expect(ColorUtils.isValidHex("#00000H")).to.be.false;
+		expect(ColorUtils.isValidHex("000i0000")).to.be.false;
+		expect(ColorUtils.isValidHex("#0000J000")).to.be.false;
+		expect(ColorUtils.isValidHex("00K")).to.be.false;
+		expect(ColorUtils.isValidHex("#0l0")).to.be.false;
+		expect(ColorUtils.isValidHex("0M00")).to.be.false;
+		expect(ColorUtils.isValidHex("#n000")).to.be.false;
+		expect(ColorUtils.isValidHex("FFGFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FFFHFF")).to.be.false;
+		expect(ColorUtils.isValidHex("iFFFFFFF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FFFFFFFj")).to.be.false;
+		expect(ColorUtils.isValidHex("FFK")).to.be.false;
+		expect(ColorUtils.isValidHex("#LFF")).to.be.false;
+		expect(ColorUtils.isValidHex("FFmF")).to.be.false;
+		expect(ColorUtils.isValidHex("#FnFF")).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidHex("G00000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#00000H"));
-		TestCase.assertFalse(ColorUtils.isValidHex("000i0000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#0000J000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("00K"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#0l0"));
-		TestCase.assertFalse(ColorUtils.isValidHex("0M00"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#n000"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FFGFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FFFHFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("iFFFFFFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FFFFFFFj"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FFK"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#LFF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("FFmF"));
-		TestCase.assertFalse(ColorUtils.isValidHex("#FnFF"));
+		expect(ColorUtils.isValidHexSingle("00")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("FF")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("ff")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("aB")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("C5")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("d")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("E")).to.be.true;
+		expect(ColorUtils.isValidHexSingle("4")).to.be.true;
 
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("00"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("FF"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("ff"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("aB"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("C5"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("d"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("E"));
-		TestCase.assertTrue(ColorUtils.isValidHexSingle("4"));
+		expect(ColorUtils.isValidHexSingle(null)).to.be.false;
+		expect(ColorUtils.isValidHexSingle("")).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidHexSingle(null));
-		TestCase.assertFalse(ColorUtils.isValidHexSingle(""));
+		expect(ColorUtils.isValidHexSingle("000")).to.be.false;
+		expect(ColorUtils.isValidHexSingle("0ff")).to.be.false;
+		expect(ColorUtils.isValidHexSingle("G0")).to.be.false;
+		expect(ColorUtils.isValidHexSingle("#00")).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidHexSingle("000"));
-		TestCase.assertFalse(ColorUtils.isValidHexSingle("0ff"));
-		TestCase.assertFalse(ColorUtils.isValidHexSingle("G0"));
-		TestCase.assertFalse(ColorUtils.isValidHexSingle("#00"));
+		expect(ColorUtils.isValidRGB(-1)).to.be.false;
+		expect(ColorUtils.isValidRGB(0)).to.be.true;
+		expect(ColorUtils.isValidRGB(128)).to.be.true;
+		expect(ColorUtils.isValidRGB(255)).to.be.true;
+		expect(ColorUtils.isValidRGB(256)).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidRGB(-1));
-		TestCase.assertTrue(ColorUtils.isValidRGB(0));
-		TestCase.assertTrue(ColorUtils.isValidRGB(128));
-		TestCase.assertTrue(ColorUtils.isValidRGB(255));
-		TestCase.assertFalse(ColorUtils.isValidRGB(256));
+		expect(ColorUtils.isValidArithmeticRGB(0.0 - .0000001)).to.be.false;
+		expect(ColorUtils.isValidArithmeticRGB(0.0)).to.be.true;
+		expect(ColorUtils.isValidArithmeticRGB(0.5)).to.be.true;
+		expect(ColorUtils.isValidArithmeticRGB(1.0)).to.be.true;
+		expect(ColorUtils.isValidArithmeticRGB(1.0 + .000000)).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidArithmeticRGB(0.0f - .0000001f));
-		TestCase.assertTrue(ColorUtils.isValidArithmeticRGB(0.0f));
-		TestCase.assertTrue(ColorUtils.isValidArithmeticRGB(0.5f));
-		TestCase.assertTrue(ColorUtils.isValidArithmeticRGB(1.0f));
-		TestCase.assertFalse(ColorUtils.isValidArithmeticRGB(1.0f + .0000001f));
+		expect(ColorUtils.isValidHue(-0.0001)).to.be.false;
+		expect(ColorUtils.isValidHue(0.0)).to.be.true;
+		expect(ColorUtils.isValidHue(180.0)).to.be.true;
+		expect(ColorUtils.isValidHue(360.0)).to.be.true;
+		expect(ColorUtils.isValidHue(360.0001)).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidHue(-0.0001f));
-		TestCase.assertTrue(ColorUtils.isValidHue(0.0f));
-		TestCase.assertTrue(ColorUtils.isValidHue(180.0f));
-		TestCase.assertTrue(ColorUtils.isValidHue(360.0f));
-		TestCase.assertFalse(ColorUtils.isValidHue(360.0001f));
+		expect(ColorUtils.isValidSaturation(-0.0001)).to.be.false;
+		expect(ColorUtils.isValidSaturation(0.0)).to.be.true;
+		expect(ColorUtils.isValidSaturation(0.5)).to.be.true;
+		expect(ColorUtils.isValidSaturation(1.0)).to.be.true;
+		expect(ColorUtils.isValidSaturation(1.0001)).to.be.false;
 
-		TestCase.assertFalse(ColorUtils.isValidSaturation(-0.0001f));
-		TestCase.assertTrue(ColorUtils.isValidSaturation(0.0f));
-		TestCase.assertTrue(ColorUtils.isValidSaturation(0.5f));
-		TestCase.assertTrue(ColorUtils.isValidSaturation(1.0f));
-		TestCase.assertFalse(ColorUtils.isValidSaturation(1.0001f));
-
-		TestCase.assertFalse(ColorUtils.isValidLightness(-0.0001f));
-		TestCase.assertTrue(ColorUtils.isValidLightness(0.0f));
-		TestCase.assertTrue(ColorUtils.isValidLightness(0.5f));
-		TestCase.assertTrue(ColorUtils.isValidLightness(1.0f));
-		TestCase.assertFalse(ColorUtils.isValidLightness(1.0001f));*/
+		expect(ColorUtils.isValidLightness(-0.0001)).to.be.false;
+		expect(ColorUtils.isValidLightness(0.0)).to.be.true;
+		expect(ColorUtils.isValidLightness(0.5)).to.be.true;
+		expect(ColorUtils.isValidLightness(1.0)).to.be.true;
+		expect(ColorUtils.isValidLightness(1.0001)).to.be.false;
 	});
 
 	it('test utils', function () {
+		expect(ColorUtils.toArithmeticRGB(95)).to.be.approximately(0.37254903, 0.0000001);
+		expect(ColorUtils.toRGB(ColorUtils.toArithmeticRGB(95))).to.equal(95);
+		expect(ColorUtils.toRGB("5F")).to.equal(95);
 		//TODO implement
-		/*TestCase.assertEquals(0.37254903, ColorUtils.toArithmeticRGB(95),
-				0.0000001);
-		TestCase.assertEquals(95,
-				ColorUtils.toRGB(ColorUtils.toArithmeticRGB(95)));
-		TestCase.assertEquals(95, ColorUtils.toRGB("5F"));
+		/*
 		TestCase.assertEquals(0.37254903, ColorUtils.toArithmeticRGB("5F"),
 				0.0000001);
 
