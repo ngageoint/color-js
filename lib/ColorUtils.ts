@@ -171,7 +171,7 @@ export class ColorUtils {
     * @return hex color in format #AARRGGBB or #RRGGBB
     */
     public static toColorWithAlpha(red: string, green: string, blue: string,
-        alpha: string): string;
+        alpha: string  |  null): string;
 
     /**
      * Convert the RBGA values to a color integer
@@ -198,7 +198,7 @@ export class ColorUtils {
             ColorUtils.validateRGB(red);
             ColorUtils.validateRGB(green);
             ColorUtils.validateRGB(blue);
-            let color = (red & 0xff) << 16 | (green & 0xff) << 8 | (blue & 0xff);
+            color = (red & 0xff) << 16 | (green & 0xff) << 8 | (blue & 0xff);
             if (alpha != -1) {
                 ColorUtils.validateRGB(alpha);
                 color = (alpha & 0xff) << 24 | color;
@@ -207,7 +207,7 @@ export class ColorUtils {
             ColorUtils.validateHexSingle(red);
             ColorUtils.validateHexSingle(green);
             ColorUtils.validateHexSingle(blue);
-            let color = "#";
+            color = "#";
             if (alpha != null) {
                 color += ColorUtils.expandShorthandHexSingle(alpha);
             }
@@ -246,8 +246,8 @@ export class ColorUtils {
             if (hex.length == 1) {
                 hex = "0" + hex;
             }
-            return hex;
         }
+        return hex;
     }
 
     /**
@@ -508,7 +508,7 @@ export class ColorUtils {
             numColors /= 2;
         }
 
-        let color: string = null;
+        let color: any;
         if (colorIndex >= 0 || numColors > 3) {
             if (numColors > 3) {
                 colorIndex++;
@@ -650,7 +650,7 @@ export class ColorUtils {
     public static shorthandHex(color: string): string {
         ColorUtils.validateHex(color);
         if (color.length > 5) {
-            let shorthandColor = '';
+            let shorthandColor: string | null = '';
             let startIndex = 0;
             if (color.startsWith("#")) {
                 shorthandColor += "#";

@@ -1,12 +1,13 @@
-const should = require('chai').should();
 
-import {ColorUtils} from '../lib/ColorUtils';
+import { ColorUtils } from '../dist/ColorUtils';
+import { expect } from 'chai';
 
 describe('ColorUtils Tests', function () {
 
-    it('test valid', function () {
-        //TODO implement
-        /*.assertTrue(ColorUtils.isValidHex("000000"));
+	it('test valid', function () {
+		//TODO implement
+		//expect(ColorUtils.isValidHex("000000")).to.be.true;
+		/*.assertTrue(ColorUtils.isValidHex("000000"));
 		TestCase.assertTrue(ColorUtils.isValidHex("#000000"));
 		TestCase.assertTrue(ColorUtils.isValidHex("00000000"));
 		TestCase.assertTrue(ColorUtils.isValidHex("#00000000"));
@@ -106,11 +107,11 @@ describe('ColorUtils Tests', function () {
 		TestCase.assertTrue(ColorUtils.isValidLightness(0.5f));
 		TestCase.assertTrue(ColorUtils.isValidLightness(1.0f));
 		TestCase.assertFalse(ColorUtils.isValidLightness(1.0001f));*/
-    });
+	});
 
-    it('test utils', function () {
-        //TODO implement
-        /*TestCase.assertEquals(0.37254903, ColorUtils.toArithmeticRGB(95),
+	it('test utils', function () {
+		//TODO implement
+		/*TestCase.assertEquals(0.37254903, ColorUtils.toArithmeticRGB(95),
 				0.0000001);
 		TestCase.assertEquals(95,
 				ColorUtils.toRGB(ColorUtils.toArithmeticRGB(95)));
@@ -411,5 +412,5 @@ describe('ColorUtils Tests', function () {
 		TestCase.assertEquals(52, rgb[0]);
 		TestCase.assertEquals(113, rgb[1]);
 		TestCase.assertEquals(82, rgb[2]);*/
-    });
+	});
 });

@@ -53,6 +53,7 @@ test/fixtures/private
 **/*/tmp
 
 dist
+test-dist
 **/*/package-lock.json
 
 built
@@ -62,5 +63,6 @@ bundle
 test/bundle
 test/sql-wasm.wasm
 docs/coverage
+tsconfig.tsbuildinfo
 
 .idea

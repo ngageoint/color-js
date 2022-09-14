@@ -25,33 +25,32 @@
         "node": ">= 12.4",
         "npm": ">= 6.x"
     },
-    "dependencies": {},
     "devDependencies": {
+        "@types/chai": "^4.3.3",
         "@types/mocha": "9.1.1",
-        "@istanbuljs/nyc-config-typescript": "1.0.2",
+        "chai": "4.3.6",
         "coveralls": "3.1.1",
+        "cpy-cli": "^4.2.0",
         "mocha": "^10.0.0",
+        "npm-run-all": "^4.1.5",
         "nyc": "^15.1.0",
-        "ts-node": "^10.9.1",
         "typescript": "^4.8.3"
     },
     "scripts": {
-        "clean": "rm -rf ./.test_run; rm -rf ./.nyc_output; rm -rf ./docs/coverage; npm run clean-dist; npm run clean-test; rm -rf api-docs",
-        "clean-dist": "rm -rf ./dist",
-        "clean-test": "rm -rf ./test/bundle ./test/node_modules ./test/tmp",
-        "test-node": "npm run clean; nyc --no-clean mocha -r ts-node/register",
-        "test": "npm run test-node && npm run report",
+        "clean": "rm -rf dist test-dist",
+        "test:compile": "tsc -b test",
+        "test:copy_node_modules": "cpy \"node_modules/**/*\" ../test-dist/",
+        "test:run": "mocha --config .mocharc.js",
+        "test:build": "npm-run-all build test:compile test:copy_node_modules",
+        "test": "npm-run-all test:build test:run",
         "report": "nyc report",
         "build": "npm run clean && tsc",
         "prepare": "npm run build"
     },
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
     "nyc": {
-        "extends": "@istanbuljs/nyc-config-typescript",
         "temp-dir": "./.test_run",
         "report-dir": "./docs/coverage",
         "reporter": [
