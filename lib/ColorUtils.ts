@@ -738,7 +738,7 @@ export class ColorUtils {
      *            hex color
      * @return true if valid
      */
-    public static isValidHex(color: string): boolean {
+    public static isValidHex(color: string | null): boolean {
         return color != null && ColorUtils.hexColorPattern.test(color);
     }
 
@@ -763,7 +763,7 @@ export class ColorUtils {
      *            hex single color
      * @return true if valid
      */
-    public static isValidHexSingle(color: string): boolean {
+    public static isValidHexSingle(color: string | null): boolean {
         return color != null && ColorUtils.hexSingleColorPattern.test(color);
     }
 
