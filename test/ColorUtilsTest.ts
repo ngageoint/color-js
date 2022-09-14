@@ -41,7 +41,7 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.isValidHex("#FFFFFFFFF")).to.be.false;
 		expect(ColorUtils.isValidHex("FF")).to.be.false;
 		expect(ColorUtils.isValidHex("#FF")).to.be.false;
-		
+
 		expect(ColorUtils.isValidHex("G00000")).to.be.false;
 		expect(ColorUtils.isValidHex("#00000H")).to.be.false;
 		expect(ColorUtils.isValidHex("000i0000")).to.be.false;
@@ -86,7 +86,8 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.isValidArithmeticRGB(0.0)).to.be.true;
 		expect(ColorUtils.isValidArithmeticRGB(0.5)).to.be.true;
 		expect(ColorUtils.isValidArithmeticRGB(1.0)).to.be.true;
-		expect(ColorUtils.isValidArithmeticRGB(1.0 + .000000)).to.be.false;
+		//TODO this resolves to 1, which is valid
+		//expect(ColorUtils.isValidArithmeticRGB(1.0 + .000000)).to.be.false;
 
 		expect(ColorUtils.isValidHue(-0.0001)).to.be.false;
 		expect(ColorUtils.isValidHue(0.0)).to.be.true;
@@ -111,42 +112,39 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.toArithmeticRGB(95)).to.be.approximately(0.37254903, 0.0000001);
 		expect(ColorUtils.toRGB(ColorUtils.toArithmeticRGB(95))).to.equal(95);
 		expect(ColorUtils.toRGB("5F")).to.equal(95);
-		//TODO implement
-		/*
-		TestCase.assertEquals(0.37254903, ColorUtils.toArithmeticRGB("5F"),
-				0.0000001);
+		expect(ColorUtils.toArithmeticRGB("5F")).to.be.approximately(0.37254903, 0.0000001);
 
-		TestCase.assertEquals(0, ColorUtils.toRGB("00"));
-		TestCase.assertEquals(0.0, ColorUtils.toArithmeticRGB("00"), 0.0);
-		TestCase.assertEquals(128, ColorUtils.toRGB("80"));
-		TestCase.assertEquals(0.5019608, ColorUtils.toArithmeticRGB("80"),
-				0.0000001);
-		TestCase.assertEquals(255, ColorUtils.toRGB("FF"));
-		TestCase.assertEquals(1.0, ColorUtils.toArithmeticRGB("FF"), 0.0);
-		TestCase.assertEquals(255, ColorUtils.toRGB("ff"));
-		TestCase.assertEquals(1.0, ColorUtils.toArithmeticRGB("ff"), 0.0);
-		TestCase.assertEquals(255, ColorUtils.toRGB("f"));
-		TestCase.assertEquals(1.0, ColorUtils.toArithmeticRGB("f"), 0.0);
+		expect(ColorUtils.toRGB("00")).to.equal(0);
+		expect(ColorUtils.toArithmeticRGB("00")).to.be.approximately(0.0, 0.0);
+		expect(ColorUtils.toRGB("80")).to.equal(128);
+		expect(ColorUtils.toArithmeticRGB("80")).to.be.approximately(0.5019608, 0.0000001);
+		expect(ColorUtils.toRGB("FF")).to.equal(255);
+		expect(ColorUtils.toArithmeticRGB("FF")).to.be.approximately(1.0, 0.0);
+		expect(ColorUtils.toRGB("ff")).to.equal(255);
+		expect(ColorUtils.toArithmeticRGB("ff")).to.be.approximately(1.0, 0.0);
+		expect(ColorUtils.toRGB("f")).to.equal(255);
+		expect(ColorUtils.toArithmeticRGB("f")).to.be.approximately(1.0, 0.0);
 
-		TestCase.assertEquals("00", ColorUtils.toHex(0));
-		TestCase.assertEquals("00", ColorUtils.toHex(0.0f));
-		TestCase.assertEquals("06", ColorUtils.toHex(6));
-		TestCase.assertEquals("06", ColorUtils.toHex(0.02352941176f));
-		TestCase.assertEquals("80", ColorUtils.toHex(128));
-		TestCase.assertEquals("80", ColorUtils.toHex(0.5f));
-		TestCase.assertEquals("FF", ColorUtils.toHex(255));
-		TestCase.assertEquals("FF", ColorUtils.toHex(1.0f));
+		expect(ColorUtils.toHex(0)).to.equal("00");
+		expect(ColorUtils.toHex(0.0)).to.equal("00");
+		expect(ColorUtils.toHex(6)).to.equal("06");
+		expect(ColorUtils.toHex(0.02352941176)).to.equal("06");
+		expect(ColorUtils.toHex(128)).to.equal("80");
+		expect(ColorUtils.toHex(0.5)).to.equal("80");
+		expect(ColorUtils.toHex(255)).to.equal("FF");
+		//TODO this is converted to 1
+		//expect(ColorUtils.toHex(1.0)).to.equal("FF");
 
-		TestCase.assertEquals("A1", ColorUtils.getRed("A1B2C3"));
-		TestCase.assertEquals("b2", ColorUtils.getGreen("a1b2c3"));
-		TestCase.assertEquals("C3", ColorUtils.getBlue("a1b2C3"));
-		TestCase.assertNull(ColorUtils.getAlpha("A1B2C3"));
-		TestCase.assertEquals("A1", ColorUtils.getRed("D4A1B2C3"));
-		TestCase.assertEquals("b2", ColorUtils.getGreen("d4a1b2c3"));
-		TestCase.assertEquals("C3", ColorUtils.getBlue("d4a1b2C3"));
-		TestCase.assertEquals("Dd", ColorUtils.getAlpha("DdA1B2C3"));
+		expect(ColorUtils.getRed("A1B2C3")).to.equal("A1");
+		expect(ColorUtils.getGreen("a1b2c3")).to.equal("b2");
+		expect(ColorUtils.getBlue("a1b2C3")).to.equal("C3");
+		expect(ColorUtils.getAlpha("A1B2C3")).to.be.null;
+		expect(ColorUtils.getRed("D4A1B2C3")).to.equal("A1");
+		expect(ColorUtils.getGreen("d4a1b2c3")).to.equal("b2");
+		expect(ColorUtils.getBlue("d4a1b2C3")).to.equal("C3");
+		expect(ColorUtils.getAlpha("DdA1B2C3")).to.equal("Dd");
 
-		TestCase.assertEquals("A1", ColorUtils.getRed("#A1B2C3"));
+		/*TestCase.assertEquals("A1", ColorUtils.getRed("#A1B2C3"));
 		TestCase.assertEquals("b2", ColorUtils.getGreen("#a1b2c3"));
 		TestCase.assertEquals("C3", ColorUtils.getBlue("#a1b2C3"));
 		TestCase.assertNull(ColorUtils.getAlpha("#A1B2C3"));
@@ -248,79 +246,79 @@ describe('ColorUtils Tests', function () {
 		TestCase.assertEquals(0, ColorUtils.getAlpha(0x00ff00));
 
 		TestCase.assertEquals(65280, ColorUtils.toColor(ColorUtils.toRGB("00"),
+			ColorUtils.toRGB("FF"), ColorUtils.toRGB("00")));
+		TestCase.assertEquals(-16711936,
+			ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
 				ColorUtils.toRGB("FF"), ColorUtils.toRGB("00")));
 		TestCase.assertEquals(-16711936,
-				ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
-						ColorUtils.toRGB("FF"), ColorUtils.toRGB("00")));
-		TestCase.assertEquals(-16711936,
-				ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
-						ColorUtils.toRGB("ff"), ColorUtils.toRGB("00"),
-						ColorUtils.toRGB("fF")));
+			ColorUtils.toColorWithAlpha(ColorUtils.toRGB("00"),
+				ColorUtils.toRGB("ff"), ColorUtils.toRGB("00"),
+				ColorUtils.toRGB("fF")));
 
 		TestCase.assertEquals("#A0B0C0", ColorUtils.toColor("A0", "B0", "C0"));
 		TestCase.assertEquals("#FFA0B0C0",
-				ColorUtils.toColorWithAlpha("A0", "B0", "C0"));
+			ColorUtils.toColorWithAlpha("A0", "B0", "C0"));
 		TestCase.assertEquals("#A0B0C0",
-				ColorUtils.toColorShorthand("A0", "B0", "C0"));
+			ColorUtils.toColorShorthand("A0", "B0", "C0"));
 		TestCase.assertEquals("#ABC",
-				ColorUtils.toColorShorthand("AA", "BB", "CC"));
+			ColorUtils.toColorShorthand("AA", "BB", "CC"));
 		TestCase.assertEquals("#FFA0B0C0",
-				ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0"));
+			ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0"));
 		TestCase.assertEquals("#FABC",
-				ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC"));
+			ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC"));
 		TestCase.assertEquals("#D0A0B0C0",
-				ColorUtils.toColorWithAlpha("A0", "B0", "C0", "D0"));
+			ColorUtils.toColorWithAlpha("A0", "B0", "C0", "D0"));
 		TestCase.assertEquals("#D0A0B0C0",
-				ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0", "D0"));
+			ColorUtils.toColorShorthandWithAlpha("A0", "B0", "C0", "D0"));
 		TestCase.assertEquals("#D0AABBCC",
-				ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "D0"));
+			ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "D0"));
 		TestCase.assertEquals("#DABC",
-				ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "DD"));
+			ColorUtils.toColorShorthandWithAlpha("AA", "BB", "CC", "DD"));
 
 		TestCase.assertEquals("#a0b0c0", ColorUtils.toColor("a0", "b0", "c0"));
 		TestCase.assertEquals("#ffa0b0c0",
-				ColorUtils.toColorWithAlpha("a0", "b0", "c0"));
+			ColorUtils.toColorWithAlpha("a0", "b0", "c0"));
 		TestCase.assertEquals("#a0b0c0",
-				ColorUtils.toColorShorthand("a0", "b0", "c0"));
+			ColorUtils.toColorShorthand("a0", "b0", "c0"));
 		TestCase.assertEquals("#abc",
-				ColorUtils.toColorShorthand("aa", "bb", "cc"));
+			ColorUtils.toColorShorthand("aa", "bb", "cc"));
 		TestCase.assertEquals("#ffa0b0c0",
-				ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0"));
+			ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0"));
 		TestCase.assertEquals("#fabc",
-				ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc"));
+			ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc"));
 		TestCase.assertEquals("#d0a0b0c0",
-				ColorUtils.toColorWithAlpha("a0", "b0", "c0", "d0"));
+			ColorUtils.toColorWithAlpha("a0", "b0", "c0", "d0"));
 		TestCase.assertEquals("#d0a0b0c0",
-				ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0", "d0"));
+			ColorUtils.toColorShorthandWithAlpha("a0", "b0", "c0", "d0"));
 		TestCase.assertEquals("#d0aabbcc",
-				ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "d0"));
+			ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "d0"));
 		TestCase.assertEquals("#dabc",
-				ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "dd"));
+			ColorUtils.toColorShorthandWithAlpha("aa", "bb", "cc", "dd"));
 
 		TestCase.assertEquals("10a0d1", ColorUtils.shorthandHex("10a0d1"));
 		TestCase.assertEquals("#10a0d1", ColorUtils.shorthandHex("#10a0d1"));
 		TestCase.assertEquals("0D0A0B0C", ColorUtils.shorthandHex("0D0A0B0C"));
 		TestCase.assertEquals("#0D0a0B0c",
-				ColorUtils.shorthandHex("#0D0a0B0c"));
+			ColorUtils.shorthandHex("#0D0a0B0c"));
 		TestCase.assertEquals("1ad", ColorUtils.shorthandHex("11aadd"));
 		TestCase.assertEquals("#1aD", ColorUtils.shorthandHex("#11aADd"));
 		TestCase.assertEquals("DABC", ColorUtils.shorthandHex("DDAABBCC"));
 		TestCase.assertEquals("#dAbC", ColorUtils.shorthandHex("#dDAabBCc"));
 
 		TestCase.assertEquals("10a0d1",
-				ColorUtils.expandShorthandHex("10a0d1"));
+			ColorUtils.expandShorthandHex("10a0d1"));
 		TestCase.assertEquals("#10a0d1",
-				ColorUtils.expandShorthandHex("#10a0d1"));
+			ColorUtils.expandShorthandHex("#10a0d1"));
 		TestCase.assertEquals("0D0A0B0C",
-				ColorUtils.expandShorthandHex("0D0A0B0C"));
+			ColorUtils.expandShorthandHex("0D0A0B0C"));
 		TestCase.assertEquals("#0D0a0B0c",
-				ColorUtils.expandShorthandHex("#0D0a0B0c"));
+			ColorUtils.expandShorthandHex("#0D0a0B0c"));
 		TestCase.assertEquals("11aadd", ColorUtils.expandShorthandHex("1ad"));
 		TestCase.assertEquals("#11aaDD", ColorUtils.expandShorthandHex("#1aD"));
 		TestCase.assertEquals("DDAABBCC",
-				ColorUtils.expandShorthandHex("DABC"));
+			ColorUtils.expandShorthandHex("DABC"));
 		TestCase.assertEquals("#ddAAbbCC",
-				ColorUtils.expandShorthandHex("#dAbC"));
+			ColorUtils.expandShorthandHex("#dAbC"));
 
 		TestCase.assertEquals("10", ColorUtils.shorthandHexSingle("10"));
 		TestCase.assertEquals("0A", ColorUtils.shorthandHexSingle("0A"));
@@ -351,7 +349,7 @@ describe('ColorUtils Tests', function () {
 
 		arithmeticRGB = ColorUtils.toArithmeticRGB(0.0f, 1.0f, 0.5f);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-				arithmeticRGB[0]);
+			arithmeticRGB[0]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[1]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[2]);
 
@@ -363,7 +361,7 @@ describe('ColorUtils Tests', function () {
 		arithmeticRGB = ColorUtils.toArithmeticRGB(120.0f, 1.0f, 0.5f);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[0]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-				arithmeticRGB[1]);
+			arithmeticRGB[1]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[2]);
 
 		hsl = ColorUtils.toHSL(0, 0, 255);
@@ -375,7 +373,7 @@ describe('ColorUtils Tests', function () {
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[0]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(0), arithmeticRGB[1]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-				arithmeticRGB[2]);
+			arithmeticRGB[2]);
 
 		hsl = ColorUtils.toHSL(255, 255, 255);
 		TestCase.assertEquals(0.0f, hsl[0]);
@@ -384,11 +382,11 @@ describe('ColorUtils Tests', function () {
 
 		arithmeticRGB = ColorUtils.toArithmeticRGB(0.0f, 0.0f, 1.0f);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-				arithmeticRGB[0]);
+			arithmeticRGB[0]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-				arithmeticRGB[1]);
+			arithmeticRGB[1]);
 		TestCase.assertEquals(ColorUtils.toArithmeticRGB(255),
-				arithmeticRGB[2]);
+			arithmeticRGB[2]);
 
 		hsl = ColorUtils.toHSL(200, 165, 10);
 		TestCase.assertEquals(48.94737f, hsl[0]);

@@ -10,13 +10,13 @@ export class ColorUtils {
      * Hex color pattern
      */
     private static readonly hexColorPattern = new RegExp(
-        "^#?((\\p{XDigit}{3}){1,2}|(\\p{XDigit}{4}){1,2})$");
+        "^#?(([0-9a-fA-F]{3}){1,2}|([0-9a-fA-F]{4}){1,2})$");
 
     /**
      * Hex single color pattern
      */
     private static readonly hexSingleColorPattern = new RegExp(
-        "^\\p{XDigit}{1,2}$");
+        "^[0-9a-fA-F]{1,2}$");
 
     /**
      * Convert the hex color values to a hex color, shorthanded when possible
@@ -171,7 +171,7 @@ export class ColorUtils {
     * @return hex color in format #AARRGGBB or #RRGGBB
     */
     public static toColorWithAlpha(red: string, green: string, blue: string,
-        alpha: string  |  null): string;
+        alpha: string | null): string;
 
     /**
      * Convert the RBGA values to a color integer
@@ -219,33 +219,21 @@ export class ColorUtils {
     }
 
     /**
-     * Convert the RGB integer to a hex single color
-     *
-     * @param color
-     *            integer color inclusively between 0 and 255
-     * @return hex single color in format FF
-     */
-    public static toHex(color: number): string;
-
-    /**
-     * Convert the arithmetic RGB float to a hex single color
-     *
-     * @param color
-     *            float color inclusively between 0.0 and 1.0
-     * @return hex single color in format FF
-     */
-    public static toHex(color: number): string;
-
+    * Convert the RGB integer to a hex single color
+    *
+    * @param color
+    *            integer color inclusively between 0 and 255 or float color inclusively between 0.0 and 1.0
+    * @return hex single color in format FF
+    */
     public static toHex(color: number): string {
         let hex: string;
         if (!Number.isInteger(color)) {
-            hex = ColorUtils.toHex(ColorUtils.toRGB(color));
-        } else {
-            ColorUtils.validateRGB(color);
-            hex = color.toString().toUpperCase();
-            if (hex.length == 1) {
-                hex = "0" + hex;
-            }
+            color = ColorUtils.toRGB(color);
+        }
+        ColorUtils.validateRGB(color);
+        hex = color.toString(16).toUpperCase();
+        if (hex.length == 1) {
+            hex = "0" + hex;
         }
         return hex;
     }
@@ -508,7 +496,7 @@ export class ColorUtils {
             numColors /= 2;
         }
 
-        let color: any;
+        let color: any = null;
         if (colorIndex >= 0 || numColors > 3) {
             if (numColors > 3) {
                 colorIndex++;
@@ -630,7 +618,7 @@ export class ColorUtils {
     public static getAlpha(color: number): number;
 
     public static getAlpha(colorOrHex: (number | string)): (number | string) {
-        let alpha: (number | string);
+        let alpha: (number | string | null) = null;
         if (typeof colorOrHex === 'number') {
             alpha = (colorOrHex >> 24) & 0xff;
         } else {
