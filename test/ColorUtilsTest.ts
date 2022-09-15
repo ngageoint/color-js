@@ -86,8 +86,7 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.isValidArithmeticRGB(0.0)).to.be.true;
 		expect(ColorUtils.isValidArithmeticRGB(0.5)).to.be.true;
 		expect(ColorUtils.isValidArithmeticRGB(1.0)).to.be.true;
-		//TODO this resolves to 1, which is valid
-		//expect(ColorUtils.isValidArithmeticRGB(1.0 + .000000)).to.be.false;
+		expect(ColorUtils.isValidArithmeticRGB(1.0 + .0000001)).to.be.false;
 
 		expect(ColorUtils.isValidHue(-0.0001)).to.be.false;
 		expect(ColorUtils.isValidHue(0.0)).to.be.true;
@@ -132,8 +131,7 @@ describe('ColorUtils Tests', function () {
 		expect(ColorUtils.toHex(128)).to.equal("80");
 		expect(ColorUtils.toHex(0.5)).to.equal("80");
 		expect(ColorUtils.toHex(255)).to.equal("FF");
-		//TODO this is converted to 1
-		//expect(ColorUtils.toHex(1.0)).to.equal("FF");
+		expect(ColorUtils.toHex(1.0)).to.equal("FF");
 
 		expect(ColorUtils.getRed("A1B2C3")).to.equal("A1");
 		expect(ColorUtils.getGreen("a1b2c3")).to.equal("b2");
