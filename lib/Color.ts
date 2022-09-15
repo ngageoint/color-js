@@ -381,7 +381,9 @@ export class Color {
      *            alpha float color inclusively between 0.0 and 1.0
      */
     public setAlpha(alpha: any): void {
-        if (typeof alpha === 'string' || (Number.isInteger(alpha) && alpha != 0 && alpha != 1)) {
+        if (typeof alpha === 'string') {
+            alpha = ColorUtils.toArithmeticRGB(alpha);
+        } else if (Number.isInteger(alpha) && alpha != 0 && alpha != 1) {
             alpha = ColorUtils.toArithmeticRGB(alpha);
         }
 
