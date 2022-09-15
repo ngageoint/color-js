@@ -655,4 +655,10 @@ export class Color {
         color.opacity = this.opacity;
         return color;
     }
+
+    public setRGB(red: any, green: any, blue: any) {
+        this.setRed(red);
+        this.setGreen(green);
+        this.setBlue(blue);
+    }
 }
