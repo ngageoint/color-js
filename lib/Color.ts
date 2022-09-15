@@ -660,9 +660,12 @@ export class Color {
         return color;
     }
 
-    public setRGB(red: any, green: any, blue: any) {
+    public setRGB(red: any, green: any, blue: any, alpha?: any) {
         this.setRed(red);
         this.setGreen(green);
         this.setBlue(blue);
+        if (alpha) {
+            this.setAlpha(alpha);
+        }
     }
 }
