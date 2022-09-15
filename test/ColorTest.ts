@@ -632,59 +632,109 @@ describe('Color Tests', function () {
         });
 
         it('test color hex singles', function () {
-                expect.fail('Not implemented');
-                /*validateColor(new Color("00", "00", "00"), 0, "#000000", "#000", 0, 0,
-                        0, 0.0f, 0.0f, 0.0f);
-                validateColor(new Color("00", "00", "FF"), 255, "#0000FF", "#00F", 0, 0,
-                        255, 240.0f, 1.0f, 0.5f);
-                validateColor(new Color("a5", "2a", "2a"), 10824234, "#A52A2A",
-                        "#A52A2A", 165, 42, 42, 0.0f, 0.59f, 0.41f);
-                validateColor(new Color("00", "FF", "ff"), 65535, "#00FFFF", "#0FF", 0,
-                        255, 255, 180.0f, 1.0f, 0.5f);
-                validateColor(new Color("44", "4", "44"), 4473924, "#444444", "#444",
-                        68, 68, 68, 0.0f, 0.0f, 0.27f);
-                validateColor(new Color("8", "88", "8"), 8947848, "#888888", "#888",
-                        136, 136, 136, 0.0f, 0.0f, 0.53f);
-                validateColor(new Color("00", "ff", "00"), 65280, "#00FF00", "#0F0", 0,
-                        255, 0, 120.0f, 1.0f, 0.5f);
-                validateColor(new Color("c", "C", "c"), 13421772, "#CCCCCC", "#CCC",
-                        204, 204, 204, 0.0f, 0.0f, 0.8f);
-                validateColor(new Color("fF", "00", "Ff"), 16711935, "#FF00FF", "#F0F",
-                        255, 0, 255, 300.0f, 1.0f, 0.5f);
-                validateColor(new Color("F", "A5", "0"), 16753920, "#FFA500", "#FFA500",
-                        255, 165, 0, 39.0f, 1.0f, 0.5f);
-                validateColor(new Color("FF", "C0", "CB"), 16761035, "#FFC0CB",
-                        "#FFC0CB", 255, 192, 203, 350.0f, 1.0f, 0.88f);
-                validateColor(new Color("80", "00", "80"), 8388736, "#800080",
-                        "#800080", 128, 0, 128, 300.0f, 1.0f, 0.25f);
-                validateColor(new Color("ff", "00", "00"), 16711680, "#FF0000", "#F00",
-                        255, 0, 0, 0.0f, 1.0f, 0.5f);
-                validateColor(new Color("ee", "82", "ee"), 15631086, "#EE82EE",
-                        "#EE82EE", 238, 130, 238, 300.0f, 0.76f, 0.72f);
-                validateColor(new Color("FF", "FF", "FF"), 16777215, "#FFFFFF", "#FFF",
-                        255, 255, 255, 0.0f, 0.0f, 1.0f);
-                validateColor(new Color("f", "f", "0"), 16776960, "#FFFF00", "#FF0",
-                        255, 255, 0, 60.0f, 1.0f, 0.5f);
-        
-                validateColor(new Color("00", "00", "00", "80"), 0, Integer.MIN_VALUE,
-                        "#000000", "#000", "#80000000", "#80000000", 0, 0, 0, 128, 0.0f,
-                        0.0f, 0.0f);
-                validateColor(new Color("f", "A5", "0", "40"), 16753920, 1090495744,
+                let color = new Color();
+                color.setRGB("00", "00", "00");
+                validateColor(color, 0, "#000000", "#000", 0, 0,
+                        0, 0.0, 0.0, 0.0);
+                color = new Color();
+                color.setRGB("00", "00", "FF");
+                validateColor(color, 255, "#0000FF", "#00F", 0, 0,
+                        255, 240.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("a5", "2a", "2a");
+                validateColor(color, 10824234, "#A52A2A",
+                        "#A52A2A", 165, 42, 42, 0.0, 0.59, 0.41);
+                color = new Color();
+                color.setRGB("00", "FF", "f");
+                validateColor(color, 65535, "#00FFFF", "#0FF", 0,
+                        255, 255, 180.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("44", "4", "44");
+                validateColor(color, 4473924, "#444444", "#444",
+                        68, 68, 68, 0.0, 0.0, 0.27);
+                color = new Color();
+                color.setRGB("8", "88", "8");
+                validateColor(color, 8947848, "#888888", "#888",
+                        136, 136, 136, 0.0, 0.0, 0.53);
+                color = new Color();
+                color.setRGB("00", "ff", "00");
+                validateColor(color, 65280, "#00FF00", "#0F0", 0,
+                        255, 0, 120.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("c", "C", "c");
+                validateColor(color, 13421772, "#CCCCCC", "#CCC",
+                        204, 204, 204, 0.0, 0.0, 0.8);
+                color = new Color();
+                color.setRGB("fF", "00", "Ff");
+                validateColor(color, 16711935, "#FF00FF", "#F0F",
+                        255, 0, 255, 300.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("F", "A5", "0");
+                validateColor(color, 16753920, "#FFA500", "#FFA500",
+                        255, 165, 0, 39.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("FF", "C0", "CB");
+                validateColor(color, 16761035, "#FFC0CB",
+                        "#FFC0CB", 255, 192, 203, 350.0, 1.0, 0.88);
+                color = new Color();
+                color.setRGB("80", "00", "80");
+                validateColor(color, 8388736, "#800080",
+                        "#800080", 128, 0, 128, 300.0, 1.0, 0.25);
+                color = new Color();
+                color.setRGB("ff", "00", "00");
+                validateColor(color, 16711680, "#FF0000", "#F00",
+                        255, 0, 0, 0.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("ee", "82", "ee");
+                validateColor(color, 15631086, "#EE82EE",
+                        "#EE82EE", 238, 130, 238, 300.0, 0.76, 0.72);
+                color = new Color();
+                color.setRGB("FF", "FF", "FF");
+                validateColor(color, 16777215, "#FFFFFF", "#FFF",
+                        255, 255, 255, 0.0, 0.0, 1.0);
+                color = new Color();
+                color.setRGB("f", "f", "0");
+                validateColor(color, 16776960, "#FFFF00", "#FF0",
+                        255, 255, 0, 60.0, 1.0, 0.5);
+
+                //TODO fix
+                /*color = new Color();
+                color.setRGB("00", "00", "00");
+                color.setAlpha("80");
+                validateColor2(color, 0, Number.MIN_SAFE_INTEGER,
+                        "#000000", "#000", "#80000000", "#80000000", 0, 0, 0, 128, 0.0,
+                        0.0, 0.0);
+                color = new Color();
+                color.setRGB("f", "A5", "0");
+                color.setAlpha("40");
+                validateColor2(color, 16753920, 1090495744,
                         "#FFA500", "#FFA500", "#40FFA500", "#40FFA500", 255, 165, 0, 64,
-                        39.0f, 1.0f, 0.5f);
-                validateColor(new Color("ff", "F", "00", "D9"), 16776960, -637534464,
+                        39.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB("ff", "F", "00");
+                color.setAlpha("D9");
+                validateColor2(color, 16776960, -637534464,
                         "#FFFF00", "#FF0", "#D9FFFF00", "#D9FFFF00", 255, 255, 0, 217,
-                        60.0f, 1.0f, 0.5f);
-        
-                validateColor(new Color("00", "00", "00", 0.5f), 0, Integer.MIN_VALUE,
-                        "#000000", "#000", "#80000000", "#80000000", 0, 0, 0, 128, 0.5f,
-                        0.0f, 0.0f, 0.0f);
-                validateColor(new Color("ff", "a5", "00", 0.25f), 16753920, 1090495744,
+                        60.0, 1.0, 0.5);
+
+                color = new Color();
+                color.setRGB("00", "00", "00");
+                color.setOpacity(0.5);
+                validateColor3(color, 0, Number.MIN_SAFE_INTEGER,
+                        "#000000", "#000", "#80000000", "#80000000", 0, 0, 0, 128, 0.5,
+                        0.0, 0.0, 0.0);
+                color = new Color();
+                color.setAlpha(0.25);
+                color.setRGB("ff", "a5", "00");
+                validateColor3(color, 16753920, 1090495744,
                         "#FFA500", "#FFA500", "#40FFA500", "#40FFA500", 255, 165, 0, 64,
-                        0.25f, 39.0f, 1.0f, 0.5f);
-                validateColor(new Color("FF", "FF", "00", 0.85f), 16776960, -637534464,
+                        0.25, 39.0, 1.0, 0.5);
+                color = new Color();
+                color.setOpacity(0.85);
+                color.setRGB("FF", "FF", "00");
+                validateColor3(color, 16776960, -637534464,
                         "#FFFF00", "#FF0", "#D9FFFF00", "#D9FFFF00", 255, 255, 0, 217,
-                        0.85f, 60.0f, 1.0f, 0.5f);*/
+                        0.85, 60.0, 1.0, 0.5);*/
         });
 
         it('test color HSL', function () {
