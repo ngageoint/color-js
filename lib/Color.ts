@@ -237,13 +237,15 @@ export class Color {
      *            alpha inclusively between 0.0 and 1.0
      */
     public setColorByHSL(hue: number, saturation: number, lightness: number,
-        alpha: number): void {
+        alpha?: number): void {
         const arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(hue, saturation,
             lightness);
         this.setRed(arithmeticRGB[0]);
         this.setGreen(arithmeticRGB[1]);
         this.setBlue(arithmeticRGB[2]);
-        this.setAlpha(alpha);
+        if (alpha) {
+            this.setAlpha(alpha);
+        }
     }
 
     /**
@@ -274,7 +276,7 @@ export class Color {
         }
         if (typeof red === 'string') {
             red = ColorUtils.toArithmeticRGB(red);
-        } 
+        }
         ColorUtils.validateArithmeticRGB(red);
         this.red = red;
     }
@@ -307,7 +309,7 @@ export class Color {
         }
         if (typeof green === 'string') {
             green = ColorUtils.toArithmeticRGB(green);
-        } 
+        }
         ColorUtils.validateArithmeticRGB(green);
         this.green = green;
     }
@@ -335,12 +337,12 @@ export class Color {
      *            blue float color inclusively between 0.0 and 1.0
      */
     public setBlue(blue: any): void {
-        if (Number.isInteger(blue) && blue !=0 && blue != 1) {
+        if (Number.isInteger(blue) && blue != 0 && blue != 1) {
             blue = ColorUtils.toHex(blue)
         }
         if (typeof blue === 'string') {
             blue = ColorUtils.toArithmeticRGB(blue);
-        } 
+        }
         ColorUtils.validateArithmeticRGB(blue);
         this.blue = blue;
     }

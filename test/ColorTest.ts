@@ -738,58 +738,95 @@ describe('Color Tests', function () {
         });
 
         it('test color HSL', function () {
-                expect.fail('Not implemented');
-                /*validateColor(new Color(new float[] { 0.0f, 0.0f, 0.0f }), 0, "#000000",
-                        "#000", 0, 0, 0, 0.0f, 0.0f, 0.0f);
-                validateColor(new Color(new float[] { 240.0f, 1.0f, 0.5f }), 255,
-                        "#0000FF", "#00F", 0, 0, 255, 240.0f, 1.0f, 0.5f);
-                validateColor(new Color(new float[] { 0.0f, 0.59420294f, 0.40588236f }),
-                        10824234, "#A52A2A", "#A52A2A", 165, 42, 42, 0.0f, 0.59f,
-                        0.41f);
-                validateColor(new Color(new float[] { 180.0f, 1.0f, 0.5f }), 65535,
-                        "#00FFFF", "#0FF", 0, 255, 255, 180.0f, 1.0f, 0.5f);
-                validateColor(new Color(new float[] { 0.0f, 0.0f, 0.26666668f }),
-                        4473924, "#444444", "#444", 68, 68, 68, 0.0f, 0.0f, 0.27f);
-                validateColor(new Color(new float[] { 0.0f, 0.0f, 0.53333336f }),
-                        8947848, "#888888", "#888", 136, 136, 136, 0.0f, 0.0f, 0.53f);
-                validateColor(new Color(new float[] { 120.0f, 1.0f, 0.5f }), 65280,
-                        "#00FF00", "#0F0", 0, 255, 0, 120.0f, 1.0f, 0.5f);
-                validateColor(new Color(new float[] { 0.0f, 0.0f, 0.8f }), 13421772,
-                        "#CCCCCC", "#CCC", 204, 204, 204, 0.0f, 0.0f, 0.8f);
-                validateColor(new Color(new float[] { 300.0f, 1.0f, 0.5f }), 16711935,
-                        "#FF00FF", "#F0F", 255, 0, 255, 300.0f, 1.0f, 0.5f);
-                validateColor(new Color(new float[] { 38.823532f, 1.0f, 0.5f }),
-                        16753920, "#FFA500", "#FFA500", 255, 165, 0, 39.0f, 1.0f, 0.5f);
-                validateColor(new Color(new float[] { 349.5238f, 1.0f, 0.87647057f }),
-                        16761035, "#FFC0CB", "#FFC0CB", 255, 192, 203, 350.0f, 1.0f,
-                        0.88f);
-                validateColor(new Color(new float[] { 300.0f, 1.0f, 0.2509804f }),
-                        8388736, "#800080", "#800080", 128, 0, 128, 300.0f, 1.0f,
-                        0.25f);
-                validateColor(new Color(new float[] { 0.0f, 1.0f, 0.5f }), 16711680,
-                        "#FF0000", "#F00", 255, 0, 0, 0.0f, 1.0f, 0.5f);
+                let color = new Color();
+                color.setColorByHSL(0.0, 0.0, 0.0);
+                validateColor(color, 0, "#000000",
+                        "#000", 0, 0, 0, 0.0, 0.0, 0.0);
+                color = new Color();
+                color.setColorByHSL(240.0, 1.0, 0.5);
+                validateColor(color, 255,
+                        "#0000FF", "#00F", 0, 0, 255, 240.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(0.0, 0.59420294, 0.40588236);
+                validateColor(color,
+                        10824234, "#A52A2A", "#A52A2A", 165, 42, 42, 0.0, 0.59,
+                        0.41);
+                color = new Color();
+                color.setColorByHSL(180.0, 1.0, 0.5);
+                validateColor(color, 65535,
+                        "#00FFFF", "#0FF", 0, 255, 255, 180.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(0.0, 0.0, 0.26666668);
+                validateColor(color,
+                        4473924, "#444444", "#444", 68, 68, 68, 0.0, 0.0, 0.27);
+                color = new Color();
+                color.setColorByHSL(0.0, 0.0, 0.53333336);
+                validateColor(color,
+                        8947848, "#888888", "#888", 136, 136, 136, 0.0, 0.0, 0.53);
+                color = new Color();
+                color.setColorByHSL(120.0, 1.0, 0.5);
+                validateColor(color, 65280,
+                        "#00FF00", "#0F0", 0, 255, 0, 120.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(0.0, 0.0, 0.8);
+                validateColor(color, 13421772,
+                        "#CCCCCC", "#CCC", 204, 204, 204, 0.0, 0.0, 0.8);
+                color = new Color();
+                color.setColorByHSL(300.0, 1.0, 0.5);
+                validateColor(color, 16711935,
+                        "#FF00FF", "#F0F", 255, 0, 255, 300.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(38.823532, 1.0, 0.5);
+                validateColor(color,
+                        16753920, "#FFA500", "#FFA500", 255, 165, 0, 39.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(349.5238, 1.0, 0.87647057);
+                validateColor(color,
+                        16761035, "#FFC0CB", "#FFC0CB", 255, 192, 203, 350.0, 1.0,
+                        0.88);
+                color = new Color();
+                color.setColorByHSL(300.0, 1.0, 0.2509804);
+                validateColor(color,
+                        8388736, "#800080", "#800080", 128, 0, 128, 300.0, 1.0,
+                        0.25);
+                color = new Color();
+                color.setColorByHSL(0.0, 1.0, 0.5);
+                validateColor(color, 16711680,
+                        "#FF0000", "#F00", 255, 0, 0, 0.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(300.0, 0.76056343, 0.72156864);
                 validateColor(
-                        new Color(new float[] { 300.0f, 0.76056343f, 0.72156864f }),
-                        15631086, "#EE82EE", "#EE82EE", 238, 130, 238, 300.0f, 0.76f,
-                        0.72f);
-                validateColor(new Color(new float[] { 0.0f, 0.0f, 1.0f }), 16777215,
-                        "#FFFFFF", "#FFF", 255, 255, 255, 0.0f, 0.0f, 1.0f);
-                validateColor(new Color(new float[] { 60.0f, 1.0f, 0.5f }), 16776960,
-                        "#FFFF00", "#FF0", 255, 255, 0, 60.0f, 1.0f, 0.5f);
-        
-                validateColor(
-                        new Color(new float[] { 0.0f, 0.0f, 0.0f, 0.50196078431f }), 0,
-                        Integer.MIN_VALUE, "#000000", "#000", "#80000000", "#80000000",
-                        0, 0, 0, 128, 0.0f, 0.0f, 0.0f);
-                validateColor(
-                        new Color(
-                                new float[] { 38.823532f, 1.0f, 0.5f, 0.25098039215f }),
+                        color,
+                        15631086, "#EE82EE", "#EE82EE", 238, 130, 238, 300.0, 0.76,
+                        0.72);
+                color = new Color();
+                color.setColorByHSL(0.0, 0.0, 1.0);
+                validateColor(color, 16777215,
+                        "#FFFFFF", "#FFF", 255, 255, 255, 0.0, 0.0, 1.0);
+                color = new Color();
+                color.setColorByHSL(60.0, 1.0, 0.5);
+                validateColor(color, 16776960,
+                        "#FFFF00", "#FF0", 255, 255, 0, 60.0, 1.0, 0.5);
+
+                //TODO fix
+                /*color = new Color();
+                color.setColorByHSL(0.0, 0.0, 0.0, 0.50196078431);
+                validateColor2(
+                        color, 0,
+                        Number.MIN_SAFE_INTEGER, "#000000", "#000", "#80000000", "#80000000",
+                        0, 0, 0, 128, 0.0, 0.0, 0.0);
+                color = new Color();
+                color.setColorByHSL(38.823532, 1.0, 0.5, 0.25098039215);
+                validateColor2(
+                        color,
                         16753920, 1090495744, "#FFA500", "#FFA500", "#40FFA500",
-                        "#40FFA500", 255, 165, 0, 64, 39.0f, 1.0f, 0.5f);
-                validateColor(
-                        new Color(new float[] { 60.0f, 1.0f, 0.5f, 0.85098039215f }),
+                        "#40FFA500", 255, 165, 0, 64, 39.0, 1.0, 0.5);
+                color = new Color();
+                color.setColorByHSL(60.0, 1.0, 0.5, 0.85098039215);
+                validateColor2(
+                        color,
                         16776960, -637534464, "#FFFF00", "#FF0", "#D9FFFF00",
-                        "#D9FFFF00", 255, 255, 0, 217, 60.0f, 1.0f, 0.5f);*/
+                        "#D9FFFF00", 255, 255, 0, 217, 60.0, 1.0, 0.5);*/
         });
 
         function validateColor(color: Color, colorInt: number, hex: string,
