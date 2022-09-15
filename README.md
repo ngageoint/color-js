@@ -13,17 +13,17 @@ Software source code previously released under an open source license and then m
 
 [Color](http://ngageoint.github.io/color-js/) is a javascript library providing color representation with support for hex, RBG, arithmetic RBG, HSL, and integer colors.
 
-### Usage ###
+### Build and Installation ###
 
-View the latest [JS Docs](http://ngageoint.github.io/color-js/)
-
+![Build & Test](https://github.com/ngageoint/color-js/actions/workflows/build-test.yml/badge.svg)
 [![NPM](https://img.shields.io/npm/v/@ngageoint/color-js.svg)](https://www.npmjs.com/package/@ngageoint/color-js)
+[![Coverage Status](https://coveralls.io/repos/github/ngageoint/color-js/badge.svg)](https://coveralls.io/github/ngageoint/color-js)
 
-Pull from [NPM](https://www.npmjs.com/package/@ngageoint/color-js)
-
-```install
-npm install --save color-js
+```sh
+$ npm install @ngageoint/color-js
 ```
+
+### Usage ###
 
 ```javascript
 
@@ -85,12 +85,3 @@ const saturation: number = color.getSaturation();
 const lightness: number = color.getLightness();
 
 ```
-
-### Build ###
-
-![Build & Test](https://github.com/ngageoint/color-js/actions/workflows/build-test.yml/badge.svg)
-
-Build this repository using NPM:
-
-    npm ci
-    npm run build
