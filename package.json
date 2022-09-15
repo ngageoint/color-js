@@ -22,8 +22,7 @@
     ],
     "homepage": "https://www.nga.mil",
     "engines": {
-        "node": ">= 12.4",
-        "npm": ">= 6.x"
+        "npm": ">= 8.x"
     },
     "devDependencies": {
         "@types/chai": "^4.3.3",
