@@ -543,51 +543,92 @@ describe('Color Tests', function () {
         });
 
         it('test color arithmetic', function () {
-                expect.fail('Not implemented');
-                /*validateColor(new Color(0.0f, 0.0f, 0.0f), 0, "#000000", "#000", 0, 0,
-                        0, 0.0f, 0.0f, 0.0f);
-                validateColor(new Color(0.0f, 0.0f, 1.0f), 255, "#0000FF", "#00F", 0, 0,
-                        255, 240.0f, 1.0f, 0.5f);
-                validateColor(new Color(0.64705882352f, 0.16470588235f, 0.16470588235f),
-                        10824234, "#A52A2A", "#A52A2A", 165, 42, 42, 0.0f, 0.59f,
-                        0.41f);
-                validateColor(new Color(0.0f, 1.0f, 1.0f), 65535, "#00FFFF", "#0FF", 0,
-                        255, 255, 180.0f, 1.0f, 0.5f);
-                validateColor(new Color(0.26666666666f, 0.26666666666f, 0.26666666666f),
-                        4473924, "#444444", "#444", 68, 68, 68, 0.0f, 0.0f, 0.27f);
-                validateColor(new Color(0.53333333333f, 0.53333333333f, 0.53333333333f),
-                        8947848, "#888888", "#888", 136, 136, 136, 0.0f, 0.0f, 0.53f);
-                validateColor(new Color(0.0f, 1.0f, 0.0f), 65280, "#00FF00", "#0F0", 0,
-                        255, 0, 120.0f, 1.0f, 0.5f);
-                validateColor(new Color(0.8f, 0.8f, 0.8f), 13421772, "#CCCCCC", "#CCC",
-                        204, 204, 204, 0.0f, 0.0f, 0.8f);
-                validateColor(new Color(1.0f, 0.0f, 1.0f), 16711935, "#FF00FF", "#F0F",
-                        255, 0, 255, 300.0f, 1.0f, 0.5f);
-                validateColor(new Color(1.0f, 0.64705882352f, 0.0f), 16753920,
-                        "#FFA500", "#FFA500", 255, 165, 0, 39.0f, 1.0f, 0.5f);
-                validateColor(new Color(1.0f, 0.75294117647f, 0.79607843137f), 16761035,
-                        "#FFC0CB", "#FFC0CB", 255, 192, 203, 350.0f, 1.0f, 0.88f);
-                validateColor(new Color(0.50196078431f, 0.0f, 0.50196078431f), 8388736,
-                        "#800080", "#800080", 128, 0, 128, 300.0f, 1.0f, 0.25f);
-                validateColor(new Color(1.0f, 0.0f, 0.0f), 16711680, "#FF0000", "#F00",
-                        255, 0, 0, 0.0f, 1.0f, 0.5f);
-                validateColor(new Color(0.93333333333f, 0.50980392156f, 0.93333333333f),
-                        15631086, "#EE82EE", "#EE82EE", 238, 130, 238, 300.0f, 0.76f,
-                        0.72f);
-                validateColor(new Color(1.0f, 1.0f, 1.0f), 16777215, "#FFFFFF", "#FFF",
-                        255, 255, 255, 0.0f, 0.0f, 1.0f);
-                validateColor(new Color(1.0f, 1.0f, 0.0f), 16776960, "#FFFF00", "#FF0",
-                        255, 255, 0, 60.0f, 1.0f, 0.5f);
-        
-                validateColor(new Color(0.0f, 0.0f, 0.0f, 0.50196078431f), 0,
-                        Integer.MIN_VALUE, "#000000", "#000", "#80000000", "#80000000",
-                        0, 0, 0, 128, 0.0f, 0.0f, 0.0f);
-                validateColor(new Color(1.0f, 0.64705882352f, 0.0f, 0.25098039215f),
+                let color = new Color();
+                color.setRGB(0.0, 0.0, 0.0);
+                validateColor(color, 0, "#000000", "#000", 0, 0,
+                        0, 0.0, 0.0, 0.0);
+                color = new Color();
+                color.setRGB(0.0, 0.0, 1.0);
+                validateColor(color, 255, "#0000FF", "#00F", 0, 0,
+                        255, 240.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(0.64705882352, 0.16470588235, 0.16470588235);
+                validateColor(color,
+                        10824234, "#A52A2A", "#A52A2A", 165, 42, 42, 0.0, 0.59,
+                        0.41);
+                color = new Color();
+                color.setRGB(0.0, 1.0, 1.0);
+                validateColor(color, 65535, "#00FFFF", "#0FF", 0,
+                        255, 255, 180.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(0.26666666666, 0.26666666666, 0.26666666666);
+                validateColor(color,
+                        4473924, "#444444", "#444", 68, 68, 68, 0.0, 0.0, 0.27);
+                color = new Color();
+                color.setRGB(0.53333333333, 0.53333333333, 0.53333333333);
+                validateColor(color,
+                        8947848, "#888888", "#888", 136, 136, 136, 0.0, 0.0, 0.53);
+                color = new Color();
+                color.setRGB(0.0, 1.0, 0.0);
+                validateColor(color, 65280, "#00FF00", "#0F0", 0,
+                        255, 0, 120.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(0.8, 0.8, 0.8);
+                validateColor(color, 13421772, "#CCCCCC", "#CCC",
+                        204, 204, 204, 0.0, 0.0, 0.8);
+                color = new Color();
+                color.setRGB(1.0, 0.0, 1.0);
+                validateColor(color, 16711935, "#FF00FF", "#F0F",
+                        255, 0, 255, 300.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(1.0, 0.64705882352, 0.0);
+                validateColor(color, 16753920,
+                        "#FFA500", "#FFA500", 255, 165, 0, 39.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(1.0, 0.75294117647, 0.79607843137);
+                validateColor(color, 16761035,
+                        "#FFC0CB", "#FFC0CB", 255, 192, 203, 350.0, 1.0, 0.88);
+                color = new Color();
+                color.setRGB(0.50196078431, 0.0, 0.50196078431);
+                validateColor(color, 8388736,
+                        "#800080", "#800080", 128, 0, 128, 300.0, 1.0, 0.25);
+                color = new Color();
+                color.setRGB(1.0, 0.0, 0.0);
+                validateColor(color, 16711680, "#FF0000", "#F00",
+                        255, 0, 0, 0.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(0.93333333333, 0.50980392156, 0.93333333333);
+                validateColor(color,
+                        15631086, "#EE82EE", "#EE82EE", 238, 130, 238, 300.0, 0.76,
+                        0.72);
+                color = new Color();
+                color.setRGB(1.0, 1.0, 1.0);
+                validateColor(color, 16777215, "#FFFFFF", "#FFF",
+                        255, 255, 255, 0.0, 0.0, 1.0);
+                color = new Color();
+                color.setRGB(1.0, 1.0, 0.0);
+                validateColor(color, 16776960, "#FFFF00", "#FF0",
+                        255, 255, 0, 60.0, 1.0, 0.5);
+
+                //TODO fix
+                /*color = new Color();
+                color.setRGB(0.0, 0.0, 0.0);
+                color.setAlpha(0.50196078431);
+                validateColor2(color, 0,
+                        Number.MIN_SAFE_INTEGER, "#000000", "#000", "#80000000", "#80000000",
+                        0, 0, 0, 128, 0.0, 0.0, 0.0);
+                color = new Color();
+                color.setRGB(1.0, 0.64705882352, 0.0);
+                color.setAlpha(0.25098039215);
+                validateColor2(color,
                         16753920, 1090495744, "#FFA500", "#FFA500", "#40FFA500",
-                        "#40FFA500", 255, 165, 0, 64, 39.0f, 1.0f, 0.5f);
-                validateColor(new Color(1.0f, 1.0f, 0.0f, 0.85098039215f), 16776960,
+                        "#40FFA500", 255, 165, 0, 64, 39.0, 1.0, 0.5);
+                color = new Color();
+                color.setRGB(1.0, 1.0, 0.0);
+                color.setAlpha(0.85098039215);
+                validateColor2(color, 16776960,
                         -637534464, "#FFFF00", "#FF0", "#D9FFFF00", "#D9FFFF00", 255,
-                        255, 0, 217, 60.0f, 1.0f, 0.5f);*/
+                        255, 0, 217, 60.0, 1.0, 0.5);*/
         });
 
         it('test color hex singles', function () {
