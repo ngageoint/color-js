@@ -11,7 +11,7 @@ Software source code previously released under an open source license and then m
 
 ### About ###
 
-[Color](http://ngageoint.github.io/color-js/) is a javascript library providing color representation with support for hex, RBG, arithmetic RBG, HSL, and integer colors.
+Color-js is a javascript library providing color representation with support for hex, RBG, arithmetic RBG, HSL, and integer colors.
 
 ### Build and Installation ###
 
