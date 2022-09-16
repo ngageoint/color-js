@@ -7,16 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-
     steps:
+    - name: Checkout Repository
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
         npm install
@@ -24,8 +17,7 @@ jobs:
         npm test
       env:
         CI: true
-    - name: Dump job context
-      env:
-        JOB_CONTEXT: ${{ toJson(matrix) }}
-      run: echo "$JOB_CONTEXT"
-      
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        path-to-lcov: ./docs/coverage/lcov.info

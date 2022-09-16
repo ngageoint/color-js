@@ -43,8 +43,7 @@
         "test:build": "npm-run-all build test:compile test:copy_node_modules",
         "test": "npm-run-all test:build test:run",
         "report": "nyc report",
-        "build": "npm run clean && tsc",
-        "prepare": "npm run build"
+        "build": "npm run clean && tsc"
     },
     "files": [
         "dist"
