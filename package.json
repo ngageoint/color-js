@@ -22,8 +22,7 @@
     ],
     "homepage": "https://www.nga.mil",
     "engines": {
-        "node": ">= 12.4",
-        "npm": ">= 6.x"
+        "npm": ">= 8.x"
     },
     "devDependencies": {
         "@types/chai": "^4.3.3",
@@ -44,8 +43,7 @@
         "test:build": "npm-run-all build test:compile test:copy_node_modules",
         "test": "npm-run-all test:build test:run",
         "report": "nyc report",
-        "build": "npm run clean && tsc",
-        "prepare": "npm run build"
+        "build": "npm run clean && tsc"
     },
     "files": [
         "dist"
