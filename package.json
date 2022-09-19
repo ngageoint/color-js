@@ -43,7 +43,7 @@
         "test:build": "npm-run-all build test:compile test:copy_node_modules",
         "test": "npm-run-all test:build test:run",
         "report": "nyc report",
-        "coverage": "nyc mocha --config .mocharc.js",
+        "coverage": "nyc npm run test:run",
         "coveralls": "nyc report --reporter=text-lcov | coveralls",
         "build": "npm run clean && tsc"
     },
