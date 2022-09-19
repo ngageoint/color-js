@@ -17,3 +17,8 @@ jobs:
         npm test
       env:
         CI: true
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./docs/coverage/lcov.info
