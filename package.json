@@ -36,13 +36,15 @@
         "typescript": "^4.8.3"
     },
     "scripts": {
-        "clean": "rm -rf dist test-dist",
+        "clean": "rm -rf dist; rm -rf test-dist; rm -rf .test_run",
         "test:compile": "tsc -b test",
         "test:copy_node_modules": "cpy \"node_modules/**/*\" ../test-dist/",
         "test:run": "mocha --config .mocharc.js",
         "test:build": "npm-run-all build test:compile test:copy_node_modules",
         "test": "npm-run-all test:build test:run",
         "report": "nyc report",
+        "coverage": "nyc mocha --config .mocharc.js",
+        "coveralls": "nyc report --reporter=text-lcov | coveralls",
         "build": "npm run clean && tsc"
     },
     "files": [
