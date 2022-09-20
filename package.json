@@ -20,6 +20,7 @@
             "email": "kgilland@caci.com"
         }
     ],
+    "main": "dist/index.js",
     "homepage": "https://www.nga.mil",
     "engines": {
         "npm": ">= 8.x"
