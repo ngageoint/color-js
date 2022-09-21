@@ -1,5 +1,5 @@
-import { ColorConstants } from "./ColorConstants";
-import { ColorUtils } from "./ColorUtils";
+import { ColorConstants } from './ColorConstants';
+import { ColorUtils } from './ColorUtils';
 
 /**
  * Color representation with support for hex, RBG, arithmetic RBG, HSL, and
@@ -8,664 +8,661 @@ import { ColorUtils } from "./ColorUtils";
  * @author osbornb
  */
 export class Color {
+  /**
+   * Red arithmetic color value
+   */
+  private red = 0.0;
 
-    /**
-     * Red arithmetic color value
-     */
-    private red = 0.0;
+  /**
+   * Green arithmetic color value
+   */
+  private green = 0.0;
 
-    /**
-     * Green arithmetic color value
-     */
-    private green = 0.0;
+  /**
+   * Blue arithmetic color value
+   */
+  private blue = 0.0;
 
-    /**
-     * Blue arithmetic color value
-     */
-    private blue = 0.0;
+  /**
+   * Opacity arithmetic value
+   */
+  private opacity = 1.0;
 
-    /**
-     * Opacity arithmetic value
-     */
-    private opacity = 1.0;
+  /**
+   * Create a black color
+   *
+   * @return color
+   */
+  public static black(): Color {
+    return Color.color(ColorConstants.BLACK);
+  }
 
-    /**
-     * Create a black color
-     *
-     * @return color
-     */
-    public static black(): Color {
-        return Color.color(ColorConstants.BLACK);
+  /**
+   * Create a blue color
+   *
+   * @return color
+   */
+  public static blue(): Color {
+    return Color.color(ColorConstants.BLUE);
+  }
+
+  /**
+   * Create a brown color
+   *
+   * @return color
+   */
+  public static brown(): Color {
+    return Color.color(ColorConstants.BROWN);
+  }
+
+  /**
+   * Create a cyan color
+   *
+   * @return color
+   */
+  public static cyan(): Color {
+    return Color.color(ColorConstants.CYAN);
+  }
+
+  /**
+   * Create a dark gray color
+   *
+   * @return color
+   */
+  public static darkGray(): Color {
+    return Color.color(ColorConstants.DKGRAY);
+  }
+
+  /**
+   * Create a gray color
+   *
+   * @return color
+   */
+  public static gray(): Color {
+    return Color.color(ColorConstants.GRAY);
+  }
+
+  /**
+   * Create a green color
+   *
+   * @return color
+   */
+  public static green(): Color {
+    return Color.color(ColorConstants.GREEN);
+  }
+
+  /**
+   * Create a light gray color
+   *
+   * @return color
+   */
+  public static lightGray(): Color {
+    return Color.color(ColorConstants.LTGRAY);
+  }
+
+  /**
+   * Create a magenta color
+   *
+   * @return color
+   */
+  public static magenta(): Color {
+    return Color.color(ColorConstants.MAGENTA);
+  }
+
+  /**
+   * Create an orange color
+   *
+   * @return color
+   */
+  public static orange(): Color {
+    return Color.color(ColorConstants.ORANGE);
+  }
+
+  /**
+   * Create a pink color
+   *
+   * @return color
+   */
+  public static pink(): Color {
+    return Color.color(ColorConstants.PINK);
+  }
+
+  /**
+   * Create a purple color
+   *
+   * @return color
+   */
+  public static purple(): Color {
+    return Color.color(ColorConstants.PURPLE);
+  }
+
+  /**
+   * Create a red color
+   *
+   * @return color
+   */
+  public static red(): Color {
+    return Color.color(ColorConstants.RED);
+  }
+
+  /**
+   * Create a violet color
+   *
+   * @return color
+   */
+  public static violet(): Color {
+    return Color.color(ColorConstants.VIOLET);
+  }
+
+  /**
+   * Create a white color
+   *
+   * @return color
+   */
+  public static white(): Color {
+    return Color.color(ColorConstants.WHITE);
+  }
+
+  /**
+   * Create a yellow color
+   *
+   * @return color
+   */
+  public static yellow(): Color {
+    return Color.color(ColorConstants.YELLOW);
+  }
+
+  /**
+   * Create the color in hex
+   *
+   * @param color
+   *            hex color in format #RRGGBB, RRGGBB, #RGB, RGB, #AARRGGBB,
+   *            AARRGGBB, #ARGB, or ARGB
+   * @return color
+   */
+  public static color(color: string): Color {
+    let newColor = new Color();
+    newColor.setColor(color);
+    return newColor;
+  }
+
+  /**
+   * Set the color in hex
+   *
+   * @param color
+   *            hex color in format #RRGGBB, RRGGBB, #RGB, RGB, #AARRGGBB,
+   *            AARRGGBB, #ARGB, or ARGB
+   */
+  public setColor(color: string): void;
+
+  /**
+   * Set the color as a single integer
+   *
+   * @param color
+   *            color integer
+   */
+  public setColor(color: number): void;
+
+  public setColor(color: number | string): void {
+    if (typeof color === 'number') {
+      this.setRed(ColorUtils.getRed(color));
+      this.setGreen(ColorUtils.getGreen(color));
+      this.setBlue(ColorUtils.getBlue(color));
+      if (color > 16777215 || color < 0) {
+        this.setAlpha(ColorUtils.getAlpha(color));
+      }
+    } else {
+      this.setRed(ColorUtils.getRed(color));
+      this.setGreen(ColorUtils.getGreen(color));
+      this.setBlue(ColorUtils.getBlue(color));
+      const alpha = ColorUtils.getAlpha(color);
+      if (alpha != null) {
+        this.setAlpha(alpha);
+      }
     }
+  }
 
-    /**
-     * Create a blue color
-     *
-     * @return color
-     */
-    public static blue(): Color {
-        return Color.color(ColorConstants.BLUE);
+  /**
+   * Set the color with HSLA (hue, saturation, lightness, alpha) values
+   *
+   * @param hue
+   *            hue value inclusively between 0.0 and 360.0
+   * @param saturation
+   *            saturation inclusively between 0.0 and 1.0
+   * @param lightness
+   *            lightness inclusively between 0.0 and 1.0
+   * @param alpha
+   *            alpha inclusively between 0.0 and 1.0
+   */
+  public setColorByHSL(hue: number, saturation: number, lightness: number, alpha?: number): void {
+    const arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(hue, saturation, lightness);
+    this.setRed(arithmeticRGB[0]);
+    this.setGreen(arithmeticRGB[1]);
+    this.setBlue(arithmeticRGB[2]);
+    if (alpha) {
+      this.setAlpha(alpha);
     }
+  }
 
-    /**
-     * Create a brown color
-     *
-     * @return color
-     */
-    public static brown(): Color {
-        return Color.color(ColorConstants.BROWN);
+  /**
+   * Set the red color in hex
+   *
+   * @param red
+   *            red hex color in format RR or R
+   */
+  public setRed(red: string): void;
+
+  /**
+   * Set the red color as an integer
+   *
+   * @param red
+   *            red integer color inclusively between 0 and 255
+   */
+  public setRed(red: number): void;
+
+  /**
+   * Set the red color as an arithmetic float
+   *
+   * @param red
+   *            red float color inclusively between 0.0 and 1.0
+   */
+  public setRed(red: any): void {
+    if (Number.isInteger(red) && red != 0 && red != 1) {
+      red = ColorUtils.toHex(red);
     }
-
-    /**
-     * Create a cyan color
-     *
-     * @return color
-     */
-    public static cyan(): Color {
-        return Color.color(ColorConstants.CYAN);
+    if (typeof red === 'string') {
+      red = ColorUtils.toArithmeticRGB(red);
     }
+    ColorUtils.validateArithmeticRGB(red);
+    this.red = red;
+  }
 
-    /**
-     * Create a dark gray color
-     *
-     * @return color
-     */
-    public static darkGray(): Color {
-        return Color.color(ColorConstants.DKGRAY);
-    }
-
-    /**
-     * Create a gray color
-     *
-     * @return color
-     */
-    public static gray(): Color {
-        return Color.color(ColorConstants.GRAY);
-    }
-
-    /**
-     * Create a green color
-     *
-     * @return color
-     */
-    public static green(): Color {
-        return Color.color(ColorConstants.GREEN);
-    }
-
-    /**
-     * Create a light gray color
-     *
-     * @return color
-     */
-    public static lightGray(): Color {
-        return Color.color(ColorConstants.LTGRAY);
-    }
-
-    /**
-     * Create a magenta color
-     *
-     * @return color
-     */
-    public static magenta(): Color {
-        return Color.color(ColorConstants.MAGENTA);
-    }
-
-    /**
-     * Create an orange color
-     *
-     * @return color
-     */
-    public static orange(): Color {
-        return Color.color(ColorConstants.ORANGE);
-    }
-
-    /**
-     * Create a pink color
-     *
-     * @return color
-     */
-    public static pink(): Color {
-        return Color.color(ColorConstants.PINK);
-    }
-
-    /**
-     * Create a purple color
-     *
-     * @return color
-     */
-    public static purple(): Color {
-        return Color.color(ColorConstants.PURPLE);
-    }
-
-    /**
-     * Create a red color
-     *
-     * @return color
-     */
-    public static red(): Color {
-        return Color.color(ColorConstants.RED);
-    }
-
-    /**
-     * Create a violet color
-     *
-     * @return color
-     */
-    public static violet(): Color {
-        return Color.color(ColorConstants.VIOLET);
-    }
-
-    /**
-     * Create a white color
-     *
-     * @return color
-     */
-    public static white(): Color {
-        return Color.color(ColorConstants.WHITE);
-    }
-
-    /**
-     * Create a yellow color
-     *
-     * @return color
-     */
-    public static yellow(): Color {
-        return Color.color(ColorConstants.YELLOW);
-    }
-
-    /**
-     * Create the color in hex
-     *
-     * @param color
-     *            hex color in format #RRGGBB, RRGGBB, #RGB, RGB, #AARRGGBB,
-     *            AARRGGBB, #ARGB, or ARGB
-     * @return color
-     */
-    public static color(color: string): Color {
-        let newColor = new Color();
-        newColor.setColor(color)
-        return newColor;
-    }
-
-
-    /**
-     * Set the color in hex
-     *
-     * @param color
-     *            hex color in format #RRGGBB, RRGGBB, #RGB, RGB, #AARRGGBB,
-     *            AARRGGBB, #ARGB, or ARGB
-     */
-    public setColor(color: string): void;
-
-    /**
-    * Set the color as a single integer
-    *
-    * @param color
-    *            color integer
-    */
-    public setColor(color: number): void;
-
-    public setColor(color: number | string): void {
-        if (typeof color === 'number') {
-            this.setRed(ColorUtils.getRed(color));
-            this.setGreen(ColorUtils.getGreen(color));
-            this.setBlue(ColorUtils.getBlue(color));
-            if (color > 16777215 || color < 0) {
-                this.setAlpha(ColorUtils.getAlpha(color));
-            }
-        } else {
-            this.setRed(ColorUtils.getRed(color));
-            this.setGreen(ColorUtils.getGreen(color));
-            this.setBlue(ColorUtils.getBlue(color));
-            const alpha = ColorUtils.getAlpha(color);
-            if (alpha != null) {
-                this.setAlpha(alpha);
-            }
-        }
-    }
-
-    /**
-     * Set the color with HSLA (hue, saturation, lightness, alpha) values
-     *
-     * @param hue
-     *            hue value inclusively between 0.0 and 360.0
-     * @param saturation
-     *            saturation inclusively between 0.0 and 1.0
-     * @param lightness
-     *            lightness inclusively between 0.0 and 1.0
-     * @param alpha
-     *            alpha inclusively between 0.0 and 1.0
-     */
-    public setColorByHSL(hue: number, saturation: number, lightness: number,
-        alpha?: number): void {
-        const arithmeticRGB = ColorUtils.toArithmeticRGBFromHSL(hue, saturation,
-            lightness);
-        this.setRed(arithmeticRGB[0]);
-        this.setGreen(arithmeticRGB[1]);
-        this.setBlue(arithmeticRGB[2]);
-        if (alpha) {
-            this.setAlpha(alpha);
-        }
-    }
-
-    /**
-     * Set the red color in hex
-     *
-     * @param red
-     *            red hex color in format RR or R
-     */
-    public setRed(red: string): void;
-
-    /**
-     * Set the red color as an integer
-     *
-     * @param red
-     *            red integer color inclusively between 0 and 255
-     */
-    public setRed(red: number): void;
-
-    /**
-     * Set the red color as an arithmetic float
-     *
-     * @param red
-     *            red float color inclusively between 0.0 and 1.0
-     */
-    public setRed(red: any): void {
-        if (Number.isInteger(red) && red != 0 && red != 1) {
-            red = ColorUtils.toHex(red);
-        }
-        if (typeof red === 'string') {
-            red = ColorUtils.toArithmeticRGB(red);
-        }
-        ColorUtils.validateArithmeticRGB(red);
-        this.red = red;
-    }
-
-    /**
+  /**
    * Set the green color in hex
    *
    * @param green
    *            green hex color in format GG or G
    */
-    public setGreen(green: string): void;
+  public setGreen(green: string): void;
 
-    /**
-    * Set the green color as an integer
-    *
-    * @param green
-    *            green integer color inclusively between 0 and 255
-    */
-    public setGreen(green: number): void;
+  /**
+   * Set the green color as an integer
+   *
+   * @param green
+   *            green integer color inclusively between 0 and 255
+   */
+  public setGreen(green: number): void;
 
-    /**
-     * Set the green color as an arithmetic float
-     *
-     * @param green
-     *            green float color inclusively between 0.0 and 1.0
-     */
-    public setGreen(green: any): void {
-        if (Number.isInteger(green) && green != 0 && green != 1) {
-            green = ColorUtils.toHex(green);
-        }
-        if (typeof green === 'string') {
-            green = ColorUtils.toArithmeticRGB(green);
-        }
-        ColorUtils.validateArithmeticRGB(green);
-        this.green = green;
+  /**
+   * Set the green color as an arithmetic float
+   *
+   * @param green
+   *            green float color inclusively between 0.0 and 1.0
+   */
+  public setGreen(green: any): void {
+    if (Number.isInteger(green) && green != 0 && green != 1) {
+      green = ColorUtils.toHex(green);
     }
-
-    /**
-    * Set the blue color in hex
-    *
-    * @param blue
-    *            blue hex color in format BB or B
-    */
-    public setBlue(blue: string): void;
-
-    /**
-    * Set the blue color as an integer
-    *
-    * @param blue
-    *            blue integer color inclusively between 0 and 255
-    */
-    public setBlue(blue: number): void;
-
-    /**
-     * Set the blue color as an arithmetic float
-     *
-     * @param blue
-     *            blue float color inclusively between 0.0 and 1.0
-     */
-    public setBlue(blue: any): void {
-        if (Number.isInteger(blue) && blue != 0 && blue != 1) {
-            blue = ColorUtils.toHex(blue)
-        }
-        if (typeof blue === 'string') {
-            blue = ColorUtils.toArithmeticRGB(blue);
-        }
-        ColorUtils.validateArithmeticRGB(blue);
-        this.blue = blue;
+    if (typeof green === 'string') {
+      green = ColorUtils.toArithmeticRGB(green);
     }
+    ColorUtils.validateArithmeticRGB(green);
+    this.green = green;
+  }
 
-    /**
-     * Set the opacity as an arithmetic float
-     *
-     * @param opacity
-     *            opacity float color inclusively between 0.0 and 1.0
-     */
-    public setOpacity(opacity: number) {
-        ColorUtils.validateArithmeticRGB(opacity);
-        this.opacity = opacity;
+  /**
+   * Set the blue color in hex
+   *
+   * @param blue
+   *            blue hex color in format BB or B
+   */
+  public setBlue(blue: string): void;
+
+  /**
+   * Set the blue color as an integer
+   *
+   * @param blue
+   *            blue integer color inclusively between 0 and 255
+   */
+  public setBlue(blue: number): void;
+
+  /**
+   * Set the blue color as an arithmetic float
+   *
+   * @param blue
+   *            blue float color inclusively between 0.0 and 1.0
+   */
+  public setBlue(blue: any): void {
+    if (Number.isInteger(blue) && blue != 0 && blue != 1) {
+      blue = ColorUtils.toHex(blue);
     }
+    if (typeof blue === 'string') {
+      blue = ColorUtils.toArithmeticRGB(blue);
+    }
+    ColorUtils.validateArithmeticRGB(blue);
+    this.blue = blue;
+  }
 
-    /**
+  /**
+   * Set the opacity as an arithmetic float
+   *
+   * @param opacity
+   *            opacity float color inclusively between 0.0 and 1.0
+   */
+  public setOpacity(opacity: number) {
+    ColorUtils.validateArithmeticRGB(opacity);
+    this.opacity = opacity;
+  }
+
+  /**
    * Set the alpha color in hex
    *
    * @param alpha
    *            alpha hex color in format AA or A
    */
-    public setAlpha(alpha: string): void;
+  public setAlpha(alpha: string): void;
 
-    /**
-    * Set the alpha color as an arithmetic float
-    *
-    * @param alpha
-    *            alpha float color inclusively between 0.0 and 1.0
-    */
-    public setAlpha(alpha: number): void;
+  /**
+   * Set the alpha color as an arithmetic float
+   *
+   * @param alpha
+   *            alpha float color inclusively between 0.0 and 1.0
+   */
+  public setAlpha(alpha: number): void;
 
-    /**
-     * Set the alpha color as an arithmetic float
-     *
-     * @param alpha
-     *            alpha float color inclusively between 0.0 and 1.0
-     */
-    public setAlpha(alpha: any): void {
-        if (typeof alpha === 'string') {
-            alpha = ColorUtils.toArithmeticRGB(alpha);
-        } else if (Number.isInteger(alpha) && alpha != 0 && alpha != 1) {
-            alpha = ColorUtils.toArithmeticRGB(alpha);
-        }
-
-        this.setOpacity(alpha);
+  /**
+   * Set the alpha color as an arithmetic float
+   *
+   * @param alpha
+   *            alpha float color inclusively between 0.0 and 1.0
+   */
+  public setAlpha(alpha: any): void {
+    if (typeof alpha === 'string') {
+      alpha = ColorUtils.toArithmeticRGB(alpha);
+    } else if (Number.isInteger(alpha) && alpha != 0 && alpha != 1) {
+      alpha = ColorUtils.toArithmeticRGB(alpha);
     }
 
-    /**
-     * Check if the color is opaque (opacity or alpha of 1.0, 255, or x00)
-     *
-     * @return true if opaque
-     */
-    public isOpaque(): boolean {
-        return this.opacity == 1.0;
-    }
+    this.setOpacity(alpha);
+  }
 
-    /**
-     * Get the color as a hex string
-     *
-     * @return hex color in the format #RRGGBB
-     */
-    public getColorHex(): string {
-        return ColorUtils.toColor(this.getRedHex(), this.getGreenHex(), this.getBlueHex());
-    }
+  /**
+   * Check if the color is opaque (opacity or alpha of 1.0, 255, or x00)
+   *
+   * @return true if opaque
+   */
+  public isOpaque(): boolean {
+    return this.opacity == 1.0;
+  }
 
-    /**
-     * Get the color as a hex string with alpha
-     *
-     * @return hex color in the format #AARRGGBB
-     */
-    public getColorHexWithAlpha(): string {
-        return ColorUtils.toColorWithAlpha(this.getRedHex(), this.getGreenHex(),
-            this.getBlueHex(), this.getAlphaHex());
-    }
+  /**
+   * Get the color as a hex string
+   *
+   * @return hex color in the format #RRGGBB
+   */
+  public getColorHex(): string {
+    return ColorUtils.toColor(this.getRedHex(), this.getGreenHex(), this.getBlueHex());
+  }
 
-    /**
-     * Get the color as a hex string, shorthanded when possible
-     *
-     * @return hex color in the format #RGB or #RRGGBB
-     */
-    public getColorHexShorthand(): string {
-        return ColorUtils.toColorShorthand(this.getRedHex(), this.getGreenHex(),
-            this.getBlueHex());
-    }
+  /**
+   * Get the color as a hex string with alpha
+   *
+   * @return hex color in the format #AARRGGBB
+   */
+  public getColorHexWithAlpha(): string {
+    return ColorUtils.toColorWithAlpha(this.getRedHex(), this.getGreenHex(), this.getBlueHex(), this.getAlphaHex());
+  }
 
-    /**
-     * Get the color as a hex string with alpha, shorthanded when possible
-     *
-     * @return hex color in the format #ARGB or #AARRGGBB
-     */
-    public getColorHexShorthandWithAlpha(): string {
-        return ColorUtils.toColorShorthandWithAlpha(this.getRedHex(), this.getGreenHex(),
-            this.getBlueHex(), this.getAlphaHex());
-    }
+  /**
+   * Get the color as a hex string, shorthanded when possible
+   *
+   * @return hex color in the format #RGB or #RRGGBB
+   */
+  public getColorHexShorthand(): string {
+    return ColorUtils.toColorShorthand(this.getRedHex(), this.getGreenHex(), this.getBlueHex());
+  }
 
-    /**
-     * Get the color as an integer
-     *
-     * @return integer color
-     */
-    public getColor(): number {
-        return ColorUtils.toColor(this.getRed(), this.getGreen(), this.getBlue());
-    }
+  /**
+   * Get the color as a hex string with alpha, shorthanded when possible
+   *
+   * @return hex color in the format #ARGB or #AARRGGBB
+   */
+  public getColorHexShorthandWithAlpha(): string {
+    return ColorUtils.toColorShorthandWithAlpha(
+      this.getRedHex(),
+      this.getGreenHex(),
+      this.getBlueHex(),
+      this.getAlphaHex(),
+    );
+  }
 
-    /**
-     * Get the color as an integer including the alpha
-     *
-     * @return integer color
-     */
-    public getColorWithAlpha(): number {
-        return ColorUtils.toColorWithAlpha(this.getRed(), this.getGreen(), this.getBlue(),
-            this.getAlpha());
-    }
+  /**
+   * Get the color as an integer
+   *
+   * @return integer color
+   */
+  public getColor(): number {
+    return ColorUtils.toColor(this.getRed(), this.getGreen(), this.getBlue());
+  }
 
-    /**
-     * Get the red color in hex
-     *
-     * @return red hex color in format RR
-     */
-    public getRedHex(): string {
-        return ColorUtils.toHex(this.red);
-    }
+  /**
+   * Get the color as an integer including the alpha
+   *
+   * @return integer color
+   */
+  public getColorWithAlpha(): number {
+    return ColorUtils.toColorWithAlpha(this.getRed(), this.getGreen(), this.getBlue(), this.getAlpha());
+  }
 
-    /**
-     * Get the green color in hex
-     *
-     * @return green hex color in format GG
-     */
-    public getGreenHex(): string {
-        return ColorUtils.toHex(this.green);
-    }
+  /**
+   * Get the red color in hex
+   *
+   * @return red hex color in format RR
+   */
+  public getRedHex(): string {
+    return ColorUtils.toHex(this.red);
+  }
 
-    /**
-     * Get the blue color in hex
-     *
-     * @return blue hex color in format BB
-     */
-    public getBlueHex(): string {
-        return ColorUtils.toHex(this.blue);
-    }
+  /**
+   * Get the green color in hex
+   *
+   * @return green hex color in format GG
+   */
+  public getGreenHex(): string {
+    return ColorUtils.toHex(this.green);
+  }
 
-    /**
-     * Get the alpha color in hex
-     *
-     * @return alpha hex color in format AA
-     */
-    public getAlphaHex(): string {
-        return ColorUtils.toHex(this.opacity);
-    }
+  /**
+   * Get the blue color in hex
+   *
+   * @return blue hex color in format BB
+   */
+  public getBlueHex(): string {
+    return ColorUtils.toHex(this.blue);
+  }
 
-    /**
-     * Get the red color in hex, shorthand when possible
-     *
-     * @return red hex color in format R or RR
-     */
-    public getRedHexShorthand(): string {
-        return ColorUtils.shorthandHexSingle(this.getRedHex());
-    }
+  /**
+   * Get the alpha color in hex
+   *
+   * @return alpha hex color in format AA
+   */
+  public getAlphaHex(): string {
+    return ColorUtils.toHex(this.opacity);
+  }
 
-    /**
-     * Get the green color in hex, shorthand when possible
-     *
-     * @return green hex color in format G or GG
-     */
-    public getGreenHexShorthand(): string {
-        return ColorUtils.shorthandHexSingle(this.getGreenHex());
-    }
+  /**
+   * Get the red color in hex, shorthand when possible
+   *
+   * @return red hex color in format R or RR
+   */
+  public getRedHexShorthand(): string {
+    return ColorUtils.shorthandHexSingle(this.getRedHex());
+  }
 
-    /**
-     * Get the blue color in hex, shorthand when possible
-     *
-     * @return blue hex color in format B or BB
-     */
-    public getBlueHexShorthand(): string {
-        return ColorUtils.shorthandHexSingle(this.getBlueHex());
-    }
+  /**
+   * Get the green color in hex, shorthand when possible
+   *
+   * @return green hex color in format G or GG
+   */
+  public getGreenHexShorthand(): string {
+    return ColorUtils.shorthandHexSingle(this.getGreenHex());
+  }
 
-    /**
-     * Get the alpha color in hex, shorthand when possible
-     *
-     * @return alpha hex color in format A or AA
-     */
-    public getAlphaHexShorthand(): string {
-        return ColorUtils.shorthandHexSingle(this.getAlphaHex());
-    }
+  /**
+   * Get the blue color in hex, shorthand when possible
+   *
+   * @return blue hex color in format B or BB
+   */
+  public getBlueHexShorthand(): string {
+    return ColorUtils.shorthandHexSingle(this.getBlueHex());
+  }
 
-    /**
-     * Get the red color as an integer
-     *
-     * @return red integer color inclusively between 0 and 255
-     */
-    public getRed(): number {
-        return ColorUtils.toRGB(this.red);
-    }
+  /**
+   * Get the alpha color in hex, shorthand when possible
+   *
+   * @return alpha hex color in format A or AA
+   */
+  public getAlphaHexShorthand(): string {
+    return ColorUtils.shorthandHexSingle(this.getAlphaHex());
+  }
 
-    /**
-     * Get the green color as an integer
-     *
-     * @return green integer color inclusively between 0 and 255
-     */
-    public getGreen(): number {
-        return ColorUtils.toRGB(this.green);
-    }
+  /**
+   * Get the red color as an integer
+   *
+   * @return red integer color inclusively between 0 and 255
+   */
+  public getRed(): number {
+    return ColorUtils.toRGB(this.red);
+  }
 
-    /**
-     * Get the blue color as an integer
-     *
-     * @return blue integer color inclusively between 0 and 255
-     */
-    public getBlue(): number {
-        return ColorUtils.toRGB(this.blue);
-    }
+  /**
+   * Get the green color as an integer
+   *
+   * @return green integer color inclusively between 0 and 255
+   */
+  public getGreen(): number {
+    return ColorUtils.toRGB(this.green);
+  }
 
-    /**
-     * Get the alpha color as an integer
-     *
-     * @return alpha integer color inclusively between 0 and 255
-     */
-    public getAlpha(): number {
-        return ColorUtils.toRGB(this.opacity);
-    }
+  /**
+   * Get the blue color as an integer
+   *
+   * @return blue integer color inclusively between 0 and 255
+   */
+  public getBlue(): number {
+    return ColorUtils.toRGB(this.blue);
+  }
 
-    /**
-     * Get the red color as an arithmetic float
-     *
-     * @return red float color inclusively between 0.0 and 1.0
-     */
-    public getRedArithmetic(): number {
-        return this.red;
-    }
+  /**
+   * Get the alpha color as an integer
+   *
+   * @return alpha integer color inclusively between 0 and 255
+   */
+  public getAlpha(): number {
+    return ColorUtils.toRGB(this.opacity);
+  }
 
-    /**
-     * Get the green color as an arithmetic float
-     *
-     * @return green float color inclusively between 0.0 and 1.0
-     */
-    public getGreenArithmetic(): number {
-        return this.green;
-    }
+  /**
+   * Get the red color as an arithmetic float
+   *
+   * @return red float color inclusively between 0.0 and 1.0
+   */
+  public getRedArithmetic(): number {
+    return this.red;
+  }
 
-    /**
-     * Get the blue color as an arithmetic float
-     *
-     * @return blue float color inclusively between 0.0 and 1.0
-     */
-    public getBlueArithmetic(): number {
-        return this.blue;
-    }
+  /**
+   * Get the green color as an arithmetic float
+   *
+   * @return green float color inclusively between 0.0 and 1.0
+   */
+  public getGreenArithmetic(): number {
+    return this.green;
+  }
 
-    /**
-     * Get the opacity as an arithmetic float
-     *
-     * @return opacity float inclusively between 0.0 and 1.0
-     */
-    public getOpacity(): number {
-        return this.opacity;
-    }
+  /**
+   * Get the blue color as an arithmetic float
+   *
+   * @return blue float color inclusively between 0.0 and 1.0
+   */
+  public getBlueArithmetic(): number {
+    return this.blue;
+  }
 
-    /**
-     * Get the alpha color as an arithmetic float
-     *
-     * @return alpha float color inclusively between 0.0 and 1.0
-     */
-    public getAlphaArithmetic(): number {
-        return this.getOpacity();
-    }
+  /**
+   * Get the opacity as an arithmetic float
+   *
+   * @return opacity float inclusively between 0.0 and 1.0
+   */
+  public getOpacity(): number {
+    return this.opacity;
+  }
 
-    /**
-     * Get the HSL (hue, saturation, lightness) values
-     *
-     * @return HSL array where: 0 = hue, 1 = saturation, 2 = lightness
-     */
-    public getHSL(): number[] {
-        return ColorUtils.toHSL(this.red, this.green, this.blue);
-    }
+  /**
+   * Get the alpha color as an arithmetic float
+   *
+   * @return alpha float color inclusively between 0.0 and 1.0
+   */
+  public getAlphaArithmetic(): number {
+    return this.getOpacity();
+  }
 
-    /**
-     * Get the HSL hue value
-     *
-     * @return hue value
-     */
-    public getHue(): number {
-        return this.getHSL()[0];
-    }
+  /**
+   * Get the HSL (hue, saturation, lightness) values
+   *
+   * @return HSL array where: 0 = hue, 1 = saturation, 2 = lightness
+   */
+  public getHSL(): number[] {
+    return ColorUtils.toHSL(this.red, this.green, this.blue);
+  }
 
-    /**
-     * Get the HSL saturation value
-     *
-     * @return saturation value
-     */
-    public getSaturation(): number {
-        return this.getHSL()[1];
-    }
+  /**
+   * Get the HSL hue value
+   *
+   * @return hue value
+   */
+  public getHue(): number {
+    return this.getHSL()[0];
+  }
 
-    /**
-     * Get the HSL lightness value
-     *
-     * @return lightness value
-     */
-    public getLightness(): number {
-        return this.getHSL()[2];
-    }
+  /**
+   * Get the HSL saturation value
+   *
+   * @return saturation value
+   */
+  public getSaturation(): number {
+    return this.getHSL()[1];
+  }
 
-    /**
-     * Copy the color
-     *
-     * @return color copy
-     */
-    public copy(): Color {
-        let color = new Color();
-        color.red = this.red;
-        color.green = this.green;
-        color.blue = this.blue;
-        color.opacity = this.opacity;
-        return color;
-    }
+  /**
+   * Get the HSL lightness value
+   *
+   * @return lightness value
+   */
+  public getLightness(): number {
+    return this.getHSL()[2];
+  }
 
-    public setRGB(red: any, green: any, blue: any, alpha?: any) {
-        this.setRed(red);
-        this.setGreen(green);
-        this.setBlue(blue);
-        if (alpha) {
-            this.setAlpha(alpha);
-        }
+  /**
+   * Copy the color
+   *
+   * @return color copy
+   */
+  public copy(): Color {
+    let color = new Color();
+    color.red = this.red;
+    color.green = this.green;
+    color.blue = this.blue;
+    color.opacity = this.opacity;
+    return color;
+  }
+
+  public setRGB(red: any, green: any, blue: any, alpha?: any) {
+    this.setRed(red);
+    this.setGreen(green);
+    this.setBlue(blue);
+    if (alpha) {
+      this.setAlpha(alpha);
     }
+  }
 }
