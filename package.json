@@ -53,6 +53,9 @@
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "lint": "tslint -p tsconfig.json"
     },
+    "files:": [
+        "lib"
+    ],
     "nyc": {
         "temp-dir": "./.test_run",
         "report-dir": "./docs/coverage",
