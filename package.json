@@ -21,6 +21,7 @@
         }
     ],
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "homepage": "https://www.nga.mil",
     "engines": {
         "npm": ">= 8.x"
