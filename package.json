@@ -42,21 +42,21 @@
         "typescript": "^4.8.3"
     },
     "scripts": {
-        "clean": "rm -rf dist; rm -rf test-dist; rm -rf .test_run",
+        "clean": "rm -rf lib; rm -rf test-lib; rm -rf .test_run",
         "test:compile": "tsc -b test",
-        "test:copy_node_modules": "cpy \"node_modules/**/*\" ../test-dist/",
+        "test:copy_node_modules": "cpy \"node_modules/**/*\" ../test-lib/",
         "test:run": "mocha --config .mocharc.js",
         "test:build": "npm-run-all build test:compile test:copy_node_modules",
         "test": "npm-run-all test:build test:run",
         "report": "nyc report",
         "coverage": "nyc npm run test:run",
-        "format": "prettier --write \"lib/**/*.ts\"",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "lint": "tslint -p tsconfig.json",
-        "build:compile": "tsc -b lib",
+        "build:compile": "tsc -b src",
         "build": "npm-run-all clean build:compile"
     },
     "files": [
-        "dist/**/*”"
+        "lib/**/*”"
     ],
     "nyc": {
         "temp-dir": "./.test_run",

@@ -4,12 +4,12 @@
       "**/*"
     ],
     "references": [
-      { "path": "../lib" }
+      { "path": "../src" }
     ],
     "compilerOptions": {
       "composite": true,
       "rootDir": ".",
-      "outDir": "../test-dist",
+      "outDir": "../test-lib",
       "typeRoots": [
         "./@types.test",
         "../src/@types",
