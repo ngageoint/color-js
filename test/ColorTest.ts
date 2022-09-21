@@ -1,6 +1,6 @@
-import { Color } from '../lib/Color';
-import { ColorConstants } from '../lib/ColorConstants';
-import { ColorUtils } from '../lib/ColorUtils';
+import { Color } from '../src/Color';
+import { ColorConstants } from '../src/ColorConstants';
+import { ColorUtils } from '../src/ColorUtils';
 import { expect } from 'chai';
 
 describe('Color Tests', function () {

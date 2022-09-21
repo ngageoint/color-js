@@ -1,6 +1,6 @@
 module.exports = {
-    spec: 'test-lib/**/*.js',
-    ignore: 'test-lib/node_modules/**',
+    spec: 'lib/**/*.js',
+    ignore: 'lib/node_modules/**',
     import: [
     ],
 };
