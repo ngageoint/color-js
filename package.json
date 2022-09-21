@@ -51,7 +51,8 @@
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "lint": "tslint -p tsconfig.json",
         "build:compile": "tsc -b src",
-        "build": "npm-run-all clean build:compile"
+        "build": "npm-run-all clean build:compile",
+        "prepare": "npm run build"
     },
     "files": [
         "lib/**/*”"
