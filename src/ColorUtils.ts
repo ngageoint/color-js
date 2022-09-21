@@ -142,26 +142,24 @@ export class ColorUtils {
     alpha: string | number | null,
   ): string | number {
     let color: string | number = '';
-    if (typeof red === 'number' && typeof green === 'number' && typeof blue === 'number' && typeof alpha === 'number') {
+    if (typeof red === 'number' && typeof green === 'number' && typeof blue === 'number') {
       ColorUtils.validateRGB(red);
       ColorUtils.validateRGB(green);
       ColorUtils.validateRGB(blue);
       color = ((red & 0xff) << 16) | ((green & 0xff) << 8) | (blue & 0xff);
-      if (alpha !== -1) {
+      if (typeof alpha === 'number' && alpha !== -1) {
         ColorUtils.validateRGB(alpha);
         color = ((alpha & 0xff) << 24) | color;
       }
     } else if (
       typeof red === 'string' &&
       typeof green === 'string' &&
-      typeof blue === 'string' &&
-      typeof alpha === 'string'
-    ) {
+      typeof blue === 'string') {
       ColorUtils.validateHexSingle(red);
       ColorUtils.validateHexSingle(green);
       ColorUtils.validateHexSingle(blue);
       color = '#';
-      if (alpha != null) {
+      if (alpha != null && typeof alpha === 'string') {
         color += ColorUtils.expandShorthandHexSingle(alpha);
       }
       color += ColorUtils.expandShorthandHexSingle(red);
