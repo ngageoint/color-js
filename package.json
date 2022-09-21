@@ -45,8 +45,8 @@
         "test": "npm-run-all test:build test:run",
         "report": "nyc report",
         "coverage": "nyc npm run test:run",
-        "coveralls": "nyc report --reporter=text-lcov | coveralls",
-        "build": "npm run clean && tsc"
+        "build:compile": "tsc -b lib",
+        "build": "npm-run-all clean build:compile"
     },
     "files": [
         "dist"
