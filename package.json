@@ -55,7 +55,8 @@
         "pretest": "npm run build"
     },
     "files": [
-        "dist"
+        "dist",
+        "index.js"
     ],
     "nyc": {
         "temp-dir": "./.test_run",
