@@ -25,7 +25,7 @@
         "npm": ">= 8.x"
     },
     "license": "MIT",
-    "main": "src/index.js",
+    "main": "dist/src/index.js",
     "devDependencies": {
         "@types/chai": "^4.3.3",
         "@types/mocha": "9.1.1",
