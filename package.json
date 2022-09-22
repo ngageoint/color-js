@@ -25,8 +25,8 @@
         "npm": ">= 8.x"
     },
     "license": "MIT",
-    "main": "dist/index.js",
-    "typings": "dist/index",
+    "main": "./index.js",
+    "typings": "./index.d.ts",
     "devDependencies": {
         "@types/chai": "^4.3.3",
         "@types/mocha": "9.1.1",
@@ -51,15 +51,11 @@
         "coverage": "nyc npm run test:run",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "lint": "tslint -p tsconfig.json",
-        "prepublish": "npm run build && npm run lint",
         "prebuild": "npm run clean",
         "pretest": "npm run build",
         "preversion": "npm run test && npm run lint",
-        "prepare": "mv dist/src/* dist; rm -rf dist/src; rm -rf dist/test"
+        "prepare": "npm run build && npm run lint && ts-node build/dist"
     },
-    "files": [
-        "dist"
-    ],
     "nyc": {
         "temp-dir": "./.test_run",
         "report-dir": "./docs/coverage",
