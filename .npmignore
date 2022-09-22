@@ -1,6 +1,7 @@
+.github/
+build/
 docs/
 test/
-benchmark/
 
 *.js.map
 
