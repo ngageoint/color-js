@@ -2,8 +2,6 @@
 docs/
 test/
 
-dist/test/
-
 *.js.map
 
 .mocharc.js
