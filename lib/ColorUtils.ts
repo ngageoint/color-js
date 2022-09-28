@@ -151,10 +151,7 @@ export class ColorUtils {
         ColorUtils.validateRGB(alpha);
         color = ((alpha & 0xff) << 24) | color;
       }
-    } else if (
-      typeof red === 'string' &&
-      typeof green === 'string' &&
-      typeof blue === 'string') {
+    } else if (typeof red === 'string' && typeof green === 'string' && typeof blue === 'string') {
       ColorUtils.validateHexSingle(red);
       ColorUtils.validateHexSingle(green);
       ColorUtils.validateHexSingle(blue);
