@@ -1,4 +1,4 @@
-import { ColorUtils } from '../src/ColorUtils';
+import { ColorUtils } from '../lib/ColorUtils';
 import { expect } from 'chai';
 
 describe('ColorUtils Tests', function () {
