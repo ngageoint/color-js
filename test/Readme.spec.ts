@@ -1,5 +1,5 @@
-import { Color } from '../src/Color';
-import { ColorConstants } from '../src/ColorConstants';
+import { Color } from '../lib/Color';
+import { ColorConstants } from '../lib/ColorConstants';
 
 describe('Used for README', function () {
   it('test color', function () {

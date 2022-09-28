@@ -345,7 +345,12 @@ export class Color {
    * @return hex color in the format #AARRGGBB
    */
   public getColorHexWithAlpha(): string {
-    return ColorUtils.toColorWithAlpha(this.getRedHex(), this.getGreenHex(), this.getBlueHex(), this.getAlphaHex()) as string;
+    return ColorUtils.toColorWithAlpha(
+      this.getRedHex(),
+      this.getGreenHex(),
+      this.getBlueHex(),
+      this.getAlphaHex(),
+    ) as string;
   }
 
   /**
